@@ -325,12 +325,25 @@ async function createPokemon(req, res){
       special_defense: parseInt(special_defense),
       speed: parseInt(speed)
     })
-    pokeCreated.setTypes(types)
-    res.status(200).json(pokeCreated)
+    await pokeCreated.setTypes(types)
+    const id = pokeCreated.id
+
+    const result = await Pokemon.findByPk(id, {
+      include: [{
+      model: Types,
+      attributes: ['en', 'es'],
+      through: {attributes: []}
+      }]
+    })
+
+    res.status(200).json(result)
 
   } catch (error) {
     console.log(error)
-    res.status(400).json({en: 'an error has ocurred while creating your pokemon', es: 'ha ocurrido un error mientras se creaba tu pokemon'})
+    res.status(400).json({
+      en: 'an error has ocurred while creating your pokemon', 
+      es: 'ha ocurrido un error mientras se creaba tu pokemon'
+    })
   }
 
 }

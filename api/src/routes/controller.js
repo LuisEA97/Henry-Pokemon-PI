@@ -85,7 +85,7 @@ async function getPokemons(req, res){
 
   } else {
     try {
-      let localPokemons = []
+      let localPokemons = [];
       const localPokes = await Pokemon.findAll({
         attributes: ['id', 'name', 'img'],
         include: [{
@@ -95,12 +95,14 @@ async function getPokemons(req, res){
         }]
       })
       
-      Promise.all(localPokes)
+      await Promise.all(localPokes)
       .then(data => {
         localPokemons = data
       })
 
       const limit = 40;
+      if(pokemons.length > 0 && pokemons.length === limit) return res.status(200).json([pokemons, localPokemons])
+
       const search = await api.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
       const pokes = search.data
 
@@ -108,6 +110,12 @@ async function getPokemons(req, res){
 
       for(let i = 0; i < pokes.results.length; i++){
         const pokemon = pokes.results[i]
+        let pos = i + 1
+
+        console.log('--------------------------------------')
+        console.log('pokemon ' + pos + ' of ' + pokes.results.length + ':')
+        console.log('fetching info for ', pokemon.name)
+
         const pokedata = await api.get(pokemon.url)
 
         /*Get pokemon types both in english and spanish*/
@@ -148,6 +156,7 @@ async function getPokemons(req, res){
   }
     
 }
+
 async function findPokeById(req, res){
   const { id } = req.params;
 
@@ -233,6 +242,7 @@ async function findPokeById(req, res){
       })
   }
 }
+
 async function getPokemonTypes(req, res){
   try {
     let resultsOnDB = []
@@ -297,6 +307,7 @@ async function getPokemonTypes(req, res){
     return res.status(400).send(error.message)
   }
 }
+
 async function createPokemon(req, res){
   try {
     const {

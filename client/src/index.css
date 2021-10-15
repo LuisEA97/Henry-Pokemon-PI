@@ -1,3 +1,13 @@
+:root{
+  --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --offset-width: 0px;
+  --offset-color: #fff;
+  --color: rgba(59, 130, 246, 0.5);
+  --offset-shadow: 0 0 #0000;
+  --ring-shadow: 0 0 #0000;
+  --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -6,8 +16,27 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+img {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.consola{
+  font-family: 'Space Mono', monospace;
+}
+.lato{
+  font-family: 'Lato', sans-serif;
+}
+.shadow-medium{
+  box-shadow: var(--offset-shadow, 0 0 #0000), var(--ring-shadow, 0 0 #0000), var(--shadow);
+}
+.shadow-small{
+  
+  box-shadow: var(--offset-shadow, 0 0 #0000), var(--ring-shadow, 0 0 #0000), var(--shadow-sm);
 }

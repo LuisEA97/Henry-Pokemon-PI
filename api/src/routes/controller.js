@@ -5,83 +5,84 @@ const Op = Sequelize.Op;
 const {Pokemon, Types} = require('../db.js')
 
 let pokemons = []
+const limit = 40;
+/* https://pokeapi.co/api/v2/pokemon?limit=${limit} */
 
 async function getPokemons(req, res){
   let { name } = req.query
 
   if(name){
+    name = name.trim().replace("%20", " ")
+    let localResult = [];
+    let apiResult = [];
+    const findPoke = await Pokemon.findAll({
+      where: {
+        name: {
+          [Op.like]: `%${name}%`
+        }
+      },
+      include: [{
+        model: Types,
+        attributes: ['en', 'es'],
+        through: {attributes: []}
+      }]
+    })
+
+    await Promise.all(findPoke).then(data => {
+      localResult = data
+    })
+
     try {
-      name = name.trim().replace("%20", " ")
-      let result = [];
-      const findPoke = await Pokemon.findAll({
-        where: {
-          name: {
-            [Op.like]: `%${name}%`
+      const pokedata = await api.get(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
+    
+      for(let i=0; i<pokedata.data.types.length; i++){
+        let en, es = ''
+        let url = pokedata.data.types[i].type.url;
+
+        await api.get(url)
+        .then(response => {
+          const langES = response.data.names.find(name => name.language.name === 'es')
+          const langEN = response.data.names.find(name => name.language.name === 'en')
+          en = langEN.name;
+          es = langES.name;
+
+          pokedata.data.types[i] = {
+            en,
+            es
           }
-        },
-        include: [{
-          model: Types,
-          attributes: ['en', 'es'],
-          through: {attributes: []}
-        }]
-      })
-
-      await Promise.all(findPoke).then(data => {
-        result = data
-      })
-      if(result.length !== 0){
-        return res.status(200).json(result)
-      } else {
-
-        let pokedata = await api.get(`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase()}`)
-
-        for(let i=0; i<pokedata.data.types.length; i++){
-          let en, es = ''
-          let url = pokedata.data.types[i].type.url;
-
-          await api.get(url)
-          .then(response => {
-            const langES = response.data.names.find(name => name.language.name === 'es')
-            const langEN = response.data.names.find(name => name.language.name === 'en')
-            en = langEN.name;
-            es = langES.name;
-
-            pokedata.data.types[i] = {
-              en,
-              es
-            }
-          })
-        }
-        /*Creating specimen of this pokemon... */
-        let specimen = {
-          id: pokedata.data.id,
-          name: pokedata.data.name,
-          img: pokedata.data.sprites.other['official-artwork']['front_default'],
-          weight: pokedata.data.weight,
-          height: pokedata.data.height,
-          types: pokedata.data.types
-        }
-
-        /* set stat_name: value in specimen*/
-        for(let i = 0; i < pokedata.data.stats.length; i++){
-          let name = pokedata.data.stats[i].stat.name
-          name = name.replace('-', '_')
-          /*Saving value of the stat as 'base'*/
-          let base = pokedata.data.stats[i]["base_stat"]
-
-          specimen[name] = base
-        }
-        res.status(200).json(specimen)
+        })
       }
-      
+      /*Creating specimen of this pokemon... */
+      let specimen = {
+        id: pokedata.data.id,
+        name: pokedata.data.name,
+        img: pokedata.data.sprites.other['official-artwork']['front_default'],
+        weight: pokedata.data.weight,
+        height: pokedata.data.height,
+        types: pokedata.data.types
+      }
+
+      /* set stat_name: value in specimen*/
+      for(let i = 0; i < pokedata.data.stats.length; i++){
+        let name = pokedata.data.stats[i].stat.name
+        name = name.replace('-', '_')
+        /*Saving value of the stat as 'base'*/
+        let base = pokedata.data.stats[i]["base_stat"]
+
+        specimen[name] = base
+      }
+
+      apiResult.push(specimen)
     } catch (error) {
-      const message = {
-        en: 'We couldnt capture this pokemon!',
-        es: '¡No pudimos capturar ese pokemón!'
-      }
       console.log(error.message)
-      res.status(400).json(message) 
+      apiResult = []
     }
+
+    if(apiResult.length === 0 && localResult.length === 0) return res.status(404).json({
+      en: 'We couldnt capture this pokemon!',
+      es: '¡No pudimos capturar ese pokemón!'
+    })
+    res.status(200).json([apiResult, localResult])
 
   } else {
     try {
@@ -100,10 +101,9 @@ async function getPokemons(req, res){
         localPokemons = data
       })
 
-      const limit = 40;
       if(pokemons.length > 0 && pokemons.length === limit) return res.status(200).json([pokemons, localPokemons])
 
-      const search = await api.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
+      const search = await api.get(`https://pokeapi.co/api/v2/pokemon?offset=320&limit=${limit}`)
       const pokes = search.data
 
       pokemons = []
@@ -112,9 +112,9 @@ async function getPokemons(req, res){
         const pokemon = pokes.results[i]
         let pos = i + 1
 
-        console.log('--------------------------------------')
         console.log('pokemon ' + pos + ' of ' + pokes.results.length + ':')
-        console.log('fetching info for ', pokemon.name)
+        console.log('fetching info for ',pokemon.name)
+        console.log('--------------------------------------')
 
         const pokedata = await api.get(pokemon.url)
 
@@ -141,17 +141,18 @@ async function getPokemons(req, res){
           id: pokedata.data.id,
           name: pokedata.data.name,
           img: pokedata.data.sprites.other['official-artwork']['front_default'],
-          /* url: pokemon.url, */
           types: pokedata.data.types,
         }
         pokemons.push(specimen)
       }
 
-      /* console.timeEnd('time') */
       res.status(200).json([pokemons, localPokemons])
     } catch (error) {
-      /* console.log(error) */
-      res.status(400).send(error.message) 
+      console.log(error)
+      res.status(400).json({
+        en: 'Oops!, something failed around here',
+        es: '¡Oops!, Algo falló por aquí'
+      })
     }
   }
     
@@ -359,9 +360,35 @@ async function createPokemon(req, res){
 
 }
 
+async function getLocalPokemons(req, res){
+  try {
+    let results = [];
+    const localPokes = await Pokemon.findAll({
+      attributes: ['id', 'name', 'img'],
+      include: [{
+        model: Types,
+        attributes: ['en', 'es'],
+        through: {attributes: []}
+      }]
+    })
+    
+    await Promise.all(localPokes)
+    .then(data => {
+      results = data
+    })
+    return res.status(200).json(results)
+  } catch (error) {
+    return res.status(400).json({
+      en: 'Oops!, something failed around here',
+      es: '¡Oops!, Algo falló por aquí'
+    })
+  }
+}
+
 module.exports ={
     getPokemons,
     findPokeById,
     getPokemonTypes,
-    createPokemon
+    createPokemon,
+    getLocalPokemons
 }

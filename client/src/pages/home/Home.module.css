@@ -1,0 +1,13 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    align-items: center;
+    text-align: center;
+}
+.Cards{
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-self: center;
+}

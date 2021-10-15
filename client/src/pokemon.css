@@ -1,0 +1,130 @@
+/* background cards colors */
+.GrassBgCard{
+    background-color: #D1FAE5;
+  }
+  .FireBgCard{
+    background-color: #FEF3C7;
+  }
+  .WaterBgCard{
+    background-color: #DBEAFE;
+  }
+  .BugBgCard{
+    background-color: #d0d6af;
+  }
+  .NormalBgCard{
+    background-color: #fde1ce;
+  }
+  .PoisonBgCard{
+    background-color: #e3cef1;
+  }
+  .ElectricBgCard{
+    background-color: #fffbd6;
+  }
+  .GroundBgCard{
+    background-color: #e0c999;
+  }
+  .FairyBgCard{
+    background-color: #FCE7F3;
+  }
+  .FightingBgCard{
+    background-color: #eed0d0;
+  }
+  .PsychicBgCard{
+    background-color: #EDE9FE;
+  }
+  .RockBgCard{
+    background-color: #c7b38e;
+  }
+  .GhostBgCard{
+    background-color: #d9d2fa;
+  }
+  .IceBgCard{
+    background-color: #fdfdfd;
+  }
+  .DragonBgCard{
+    background-color: #ffcaae;
+  }
+  .SteelBgCard{
+    background-color: #f1f1f1;
+  }
+  .DarkBgCard{
+    background-color: #dadada;
+  }
+  .FlyingBgCard{
+    background-color: #eef5fd;
+  }
+/* background pills colors */
+.GrassBgPill{
+    background-color: #047857;
+    color: white;
+}
+.PoisonBgPill{
+    background-color: #312E81;
+    color: white;
+}
+.FireBgPill{
+    background-color: #c23000;
+    color: white;
+}
+.WaterBgPill{
+    background-color: #1E40AF;
+    color: white;
+}
+.BugBgPill{
+    background-color: #685a15;
+    color: white; 
+}
+.FlyingBgPill{
+    background-color: #225fa5;
+    color: white; 
+}
+.NormalBgPill{
+    background-color: #c56626;
+    color: white
+}
+.ElectricBgPill{
+    /* background-color: #f5d20b; */
+    background-color: #fbd13d;
+    color: #111827;
+    font-weight: 600;
+}
+.GroundBgPill{
+    background-color: #4b4000;
+    color: white;
+}
+.FairyBgPill{
+    background-color: #DB2777;
+    color: white;
+}
+.SteelBgPill{
+    background-color: #d6d6d6;
+    color: #111827;
+}
+.IceBgPill{
+    background-color: #F9FAFB;
+    color: #111827;
+}
+.GhostBgPill{
+    background-color: #0a1e55;
+    color: white;
+}
+.PsychicBgPill{
+    background-color: #4C1D95;
+    color: white;
+}
+.RockBgPill{
+    background-color: #221d01;
+    color: white;
+}
+.FightingBgPill{
+    background-color: #EE0701;
+    color: white;
+}
+.DragonBgPill{
+    background-color: #b82500;
+    color: white;
+}
+.DarkBgPill{
+    background-color: #111827;
+    color: #F9FAFB;
+}

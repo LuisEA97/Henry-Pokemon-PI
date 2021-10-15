@@ -5,7 +5,8 @@ const {
     getPokemons,
     findPokeById,
     getPokemonTypes,
-    createPokemon
+    createPokemon,
+    getLocalPokemons
 } = require('./controller')
 
 const router = Router();
@@ -13,6 +14,7 @@ const router = Router();
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
 router.get('/pokemons', getPokemons)
+router.get('/pokemons/local', getLocalPokemons)
 router.get('/pokemons/:id', findPokeById)
 router.get('/types', getPokemonTypes)
 router.post('/pokemons', createPokemon)

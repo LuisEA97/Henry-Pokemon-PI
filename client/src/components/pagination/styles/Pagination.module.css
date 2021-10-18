@@ -1,0 +1,37 @@
+.pagination{
+    display: flex;
+    flex-direction: column;
+    width: inherit;
+    justify-content: center;
+    align-items: center;
+}
+.buttonItem{
+    cursor: pointer;
+    user-select: none;
+    padding: 1px 8px;
+    margin: 0 5px;
+    font-weight: 600;
+    border-radius: 5px;
+    background-color: #DBEAFE;
+    color: #111827;
+}
+.buttonItem:hover{
+    background-color: #2563EB;
+    color: white;
+}
+.activeItem{
+    background-color: #1E3A8A;
+    color: white;
+}
+.itemsHolder{
+    flex-wrap: wrap;
+    justify-content: left;
+    align-self: center;
+    height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+.bar{
+    display: flex;
+    margin-top: 20px;
+}

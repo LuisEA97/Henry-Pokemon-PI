@@ -6,8 +6,16 @@
     text-align: center;
 }
 .Cards{
-    display: inline-flex;
+    display: flex;
+    margin: 0 10px 0 10px;
     flex-wrap: wrap;
     justify-content: center;
     align-self: center;
+}
+.filterHolder{
+    display: flex;
+    flex-direction: column;
+}
+.filters{
+    display: flex;
 }

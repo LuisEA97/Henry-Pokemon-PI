@@ -66,7 +66,7 @@ const Root = () => {
                     {!errorLoad?
                     (loading?(
                     <div className={s.loadingPokemons}>
-                        <img draggable="false" src={pokebola} alt="icon" className={`${s.pokeball} ${s.spinning}`} />
+                        <img draggable="false" src={pokebola} alt="icon" className={`${s.pokeball} spinning`} />
                         <span className={`${s.loadingStatus}`}>
                         {lang=== 'es'?(`Capturando pokemones...`):(`Catching pokemons...`)}
                         </span>
@@ -87,7 +87,7 @@ const Root = () => {
                     {!errorType?(
                         loadingTypes?(
                             <div className={s.loadingPokemons}>
-                                <img draggable="false" src={pokebola} alt="icon" className={`${s.pokeball} ${s.spinning}`} />
+                                <img draggable="false" src={pokebola} alt="icon" className={`${s.pokeball} $spinning`} />
                                 <span className={`${s.loadingStatus}`}>
                                 {lang=== 'es'?(`Identifiando tipos...`):(`Getting types...`)}
                                 </span>

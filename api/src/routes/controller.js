@@ -88,7 +88,7 @@ async function getPokemons(req, res){
     try {
       let localPokemons = [];
       const localPokes = await Pokemon.findAll({
-        attributes: ['id', 'name', 'img'],
+        attributes: ['id', 'name', 'img', 'attack'],
         include: [{
           model: Types,
           attributes: ['en', 'es'],
@@ -103,7 +103,7 @@ async function getPokemons(req, res){
 
       if(pokemons.length > 0 && pokemons.length === limit) return res.status(200).json([pokemons, localPokemons])
 
-      const search = await api.get(`https://pokeapi.co/api/v2/pokemon?offset=320&limit=${limit}`)
+      const search = await api.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
       const pokes = search.data
 
       pokemons = []
@@ -142,6 +142,7 @@ async function getPokemons(req, res){
           name: pokedata.data.name,
           img: pokedata.data.sprites.other['official-artwork']['front_default'],
           types: pokedata.data.types,
+          attack: pokedata.data.stats[1].base_stat
         }
         pokemons.push(specimen)
       }

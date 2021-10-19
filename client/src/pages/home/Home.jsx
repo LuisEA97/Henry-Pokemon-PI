@@ -1,130 +1,113 @@
 import React, { useEffect, useRef, useState } from 'react';
 import s from './Home.module.css'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from "react-router-dom"
 import Pagination from '../../components/pagination/Pagination';
+import { filterBy } from '../../redux/actions/actions';
+import Dropdown from '../../components/dropdown/Dropdown';
 
 const Home = () => {
+    const dispatch = useDispatch();
     const lang = useSelector(store => store.lang);
     const pokemons = useSelector(store => store.pokemonsFromAPI)
     const typesOfPokemons = useSelector(store => store.types)
-    const name_asc = useRef()
-    const name_desc = useRef()
-    const most_pw = useRef()
-    const less_pw = useRef()
-    const select = useRef()
-    const [pokemonsToShow, setPokemonsToShow] = useState(pokemons)
-    const [filters, setFilters] = useState({
-        name_asc: false,
-        name_desc: false,
-        most_pw: false,
-        less_pw: false
+    const typesList = typesOfPokemons.filter(el => { if(el.id !== 19 && el.id !== 20) return el })
+    .sort(function(a, b){
+        if(lang === 'es'){
+            if(a.es < b.es) { return -1; }
+            if(a.es > b.es) { return 1; }
+            return 0;
+        }
+        if(lang === 'en'){
+            if(a.en < b.en) { return -1; }
+            if(a.en > b.en) { return 1; }
+            return 0;
+        }
     })
+    const selectType = useRef();
+    const selectCategory = useRef()
+    const [filters, setFilters] = useState({
+        type: 'no_filter',
+        showing: 'all'
+    })
+
     const history = useHistory()
+
+    useEffect(() => {
+        dispatch(filterBy(filters))
+    }, [filters])
+
     useEffect(() => {
         if(pokemons.length === 0){
             history.push('/')
         }
     }, [])
-    
-    const settingfilters = (e) => {
-        const name = e.target.name;
-        const value = e.target.checked;
-        const filter = {}
-        const controls = [
-            name_asc,
-            name_desc,
-            most_pw,
-            less_pw
-        ]
-        for(let i=0; i<controls.length; i++){
-           const control = controls[i]
-           if(control.current.name !== name){
-               control.current.checked = false
-               filter[control.current.name]=false
-           }
+
+    const showBy = (el) => {
+        const filter = {
+            ...filters,
+            showing: el.en
         }
-        filter[name] = value
         setFilters(filter)
     }
-    const filtering = (e) => {
-        settingfilters(e);
-        const typeToFilter = select.current.value
-        let results = []
-        if(typeToFilter === 'all'){
-            results = pokemonsToShow
+    const orderBy = (el) => {
+        const filter = {
+            ...filters,
+            type: el.id
         }
-        if(filters.most_pw) {
-            console.log('most powerfull')
-            results = pokemonsToShow.sort((a, b) => a.attack - b.attack)
-            setPokemonsToShow(results)
-        }
-        if(filters.less_pw) {
-            console.log('less powerfull')
-            results = pokemonsToShow.sort((a, b) => b.attack - a.attack)
-            setPokemonsToShow(results)
-        }
-        if(filters.name_asc) {
-            console.log('A-Z')
-            results = pokemonsToShow.sort(function(a, b){
-                if(a.name < b.name) { return 1; }
-                if(a.name > b.name) { return -1; }
-                return 0;
-            })
-            setPokemonsToShow(results)
-        }
-        if(filters.name_desc) {
-            console.log('Z-A')
-            results = pokemonsToShow.sort(function(a, b){
-                if(a.name < b.name) { return -1; }
-                if(a.name > b.name) { return 1; }
-                return 0;
-            })
-            setPokemonsToShow(results)
-        }
+        setFilters(filter)
     }
+    const optionsFilters = [
+        {
+            id: 'most_pw',
+            en: 'Most powerfull',
+            es: 'Más poderosos'
+        },
+        {
+            id: 'less_pw',
+            en: 'Less powerfull',
+            es: 'Menor poder'
+        },
+        {
+            id: 'name_asc',
+            en: 'By name (A-Z)',
+            es: 'Por nombre (A-Z)'
+        },
+        {
+            id: 'name_desc',
+            en: 'By name (Z-A)',
+            es: 'Por nombre (Z-A)'
+        }
+    ]
     return (
         <div className={s.main}>
             <div className={s.filterHolder}>
-                <h2>Ordenar por:</h2>
+                <h2>{lang=== 'en' ? 'Order and filter' : 'Ordenar y filtrar'}:</h2>
                 <div className={s.filters}>
+                    
                     <div className="filter_group">
-                        <input type="checkbox" name="most_pw" id="most_pw" ref={most_pw} onChange={filtering} />
-                        <label htmlFor="most_pw">Mayor poder</label>
+                    <label htmlFor="type">{lang=== 'en' ? 'Order by' : 'Ordenar por'}</label>
+                    <Dropdown 
+                            list={optionsFilters} 
+                            lang={lang}
+                            message={lang=== 'en' ? 'Not ordering' : 'Sin ordenar'}
+                            cb={orderBy}
+                            /> 
                     </div>
                     <div className="filter_group">
-                        <input type="checkbox" name="less_pw" id="less_pw" ref={less_pw} onChange={filtering} />
-                        <label htmlFor="less_pw">Menor poder</label>
-                    </div>
-                    <div className="filter_group">
-                        <input type="checkbox" name="name_asc" id="name_asc" ref={name_asc} onChange={filtering} />
-                        <label htmlFor="name_asc">De la A a la Z</label>
-                    </div>
-                    <div className="filter_group">
-                        <input type="checkbox" name="name_desc" id="name_desc" ref={name_desc} onChange={filtering} />
-                        <label htmlFor="name_desc">De la Z a la A</label>
-                    </div>
-                    <div className="filter_group">
-                        <label htmlFor="typePokemon">Tipo</label>
-                        <div className="selectdiv">
-                            <label>
-                                <select id="typesOfPokemons" defaultValue="all" ref={select} onChange={(e) => console.log(e.target.value)}>
-                                    <option value="all"> {lang=== 'en' ? 'All' : 'Todos'} </option>
-                                    {typesOfPokemons.map((pokeType) => {
-                                    if(pokeType.id !== 19 && pokeType.id !== 20){
-                                        return (
-                                            <option key={pokeType.id} value={pokeType.en}>{lang=== 'en'?(pokeType.en):(pokeType.es)}</option>
-                                            )
-                                        }
-                                    })}
-                                </select>
-                            </label>
-                        </div>
+                        <label htmlFor="showing">{lang=== 'en' ? 'Types of pokemons' : 'Tipos de pokemones'}</label>
+                        <Dropdown 
+                            list={typesList} 
+                            lang={lang}
+                            message={lang=== 'en' ? 'All pokemons' : 'Todos los pokemones'}
+                            cb={showBy}
+                            />
                     </div>
                 </div>
             </div>
             <div className={s.Cards}>
-                <Pagination itemsPerPage={12} items={pokemonsToShow} />                
+                <Pagination itemsPerPage={12} showing='fromAPI' />                
+                {/* <Pagination itemsPerPage={12} showing='Local' />   */}              
             </div>
         </div>
     )

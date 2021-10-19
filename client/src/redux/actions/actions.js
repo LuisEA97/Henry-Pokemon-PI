@@ -8,7 +8,8 @@ import {
     CLEAR_LOCAL_POKEMONS,
     UPDATE_LOCAL_POKEMONS,
     SET_EN,
-    SET_ES
+    SET_ES,
+    FILTER_BY
 } from "../actionTypes/actionTypes";
 
 const axios = require('axios').default
@@ -81,5 +82,11 @@ export function setEs(){
     return{
         type: SET_ES,
         payload: 'es'
+    }
+}
+export function filterBy(activeFilters){
+    return{
+        type: FILTER_BY,
+        payload: activeFilters
     }
 }

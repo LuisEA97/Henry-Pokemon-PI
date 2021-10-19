@@ -7,13 +7,15 @@ import {
     FETCHING_ERRORS,
     CLEAR_LOCAL_POKEMONS,
     SET_EN,
-    SET_ES
+    SET_ES,
+    FILTER_BY
 } from "../actionTypes/actionTypes";
 
 const initalState = {
     pokemonsFromAPI: [],
     localPokemons: [],
-    filtered: [],
+    filteredAPI: [],
+    filteredLocal: [],
     types: [],
     pokeById: {},
     error: {},
@@ -68,6 +70,78 @@ function rootReducer(state = initalState, action){
                 ...state,
                 lang: action.payload
             }
+        case FILTER_BY:
+            let filters = action.payload;
+            let results = []
+            let localFiltered = []
+            let pokemonsFromApi = state.pokemonsFromAPI.filter(pokemon => {
+                if(filters.showing ==='all') return pokemon
+                else {
+                    if(pokemon.types.findIndex(type => type.en === filters.showing) !== -1){
+                        return pokemon
+                      }
+                }
+            })
+            let pokemonsFromLocal = state.localPokemons.filter(pokemon => {
+                if(filters.showing ==='all') return pokemon
+                else {
+                    if(pokemon.types.findIndex(type => type.en === filters.showing) !== -1){
+                        return pokemon
+                      }
+                }
+            })
+            if(filters.type === 'less_pw') {
+                results = pokemonsFromApi.sort((a, b) => a.attack - b.attack)
+                localFiltered = pokemonsFromLocal.sort((a, b) => a.attack - b.attack)
+
+                pokemonsFromApi = results
+                pokemonsFromLocal = localFiltered
+            } 
+            if(filters.type === 'most_pw') {
+                results = pokemonsFromApi.sort((a, b) => b.attack - a.attack)
+                localFiltered = pokemonsFromLocal.sort((a, b) => b.attack - a.attack)
+
+                pokemonsFromApi = results
+                pokemonsFromLocal = localFiltered
+            } 
+            if(filters.type === 'name_desc') {
+                results = pokemonsFromApi.sort(function(a, b){
+                    if(a.name < b.name) { return 1; }
+                    if(a.name > b.name) { return -1; }
+                    return 0;
+                })
+                localFiltered = pokemonsFromLocal.sort(function(a, b){
+                    if(a.name < b.name) { return 1; }
+                    if(a.name > b.name) { return -1; }
+                    return 0;
+                })
+                
+                pokemonsFromApi = results
+                pokemonsFromLocal = localFiltered
+            } 
+            if(filters.type === 'name_asc') {
+                results = pokemonsFromApi.sort(function(a, b){
+                    if(a.name < b.name) { return -1; }
+                    if(a.name > b.name) { return 1; }
+                    return 0;
+                })
+                localFiltered = pokemonsFromLocal.sort(function(a, b){
+                    if(a.name < b.name) { return -1; }
+                    if(a.name > b.name) { return 1; }
+                    return 0;
+                })
+
+                pokemonsFromApi = results
+                pokemonsFromLocal = localFiltered
+            } 
+
+            return{
+                ...state,
+                filteredAPI: pokemonsFromApi,
+                filteredLocal: pokemonsFromLocal
+
+            }
+
         default:
             return state;
     }

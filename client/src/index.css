@@ -7,7 +7,7 @@
   --ring-shadow: 0 0 #0000;
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
   --scrollbarBG: #cfd8dc00;
-  --thumbBG: #3b3b3b77;
+  --thumbBG: #d8d8d8;
   --select-border: #777;
   --select-focus: blue;
   --select-arrow: var(--select-border);
@@ -94,21 +94,20 @@ select{
 }
 .filter_group > input{
   margin: 0 5px;
-  align-self: center;
 }
 .filter_group > label {
   align-self: center;
 }
 .selectdiv {
   margin-left: 10px;
-  min-width: 150px;
+  min-width: 210px;
   position: relative;
   align-self: center;
 }
 .selectdiv:after {
   content: '<>';
   font: 17px "Consolas", monospace;
-  color: #333;
+  color: white;
   -webkit-transform: rotate(90deg);
   -moz-transform: rotate(90deg);
   -ms-transform: rotate(90deg);
@@ -134,16 +133,18 @@ select{
   display: block;
   width: 100%;
   max-width: 320px;
-  padding: 0px 24px;
+  padding: 0px 26px 0 10px;
   font-size: 16px;
   line-height: 1.75;
-  color: #333;
-  background-color: #ffffff;
   background-image: none;
-  border: 1px solid #cccccc;
+  border: 2px solid #cccccc;
   -ms-word-break: normal;
   word-break: normal;
 }
 .selectdiv select:focus{
   border: 2px solid #D97706;
+}
+select option{
+  background-color: #080b14;
+  color:#F9FAFB;
 }

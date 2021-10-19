@@ -4,6 +4,7 @@
     width: inherit;
     justify-content: center;
     align-items: center;
+    margin: 0 10px;
 }
 .buttonItem{
     cursor: pointer;
@@ -16,12 +17,17 @@
     color: #111827;
 }
 .buttonItem:hover{
-    background-color: #2563EB;
+    background-color: #ff9900;
     color: white;
 }
+.buttonItem:active,
+.buttonItem:focus{
+    background-color: #ffc62a;
+    color: #01264B;
+}
 .activeItem{
-    background-color: #1E3A8A;
-    color: white;
+    background-color: #ffc62a;
+    color: #01264B;
 }
 .itemsHolder{
     flex-wrap: wrap;
@@ -30,8 +36,23 @@
     height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
+    margin: 0 30px;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    /* background-color: #f7f9fc; */
+}
+nav{
+    width: 100%;
+    padding: 10px 0;
+    /* background-color: #006090; */
 }
 .bar{
+    display: inline-flex;
+}
+.empty{
     display: flex;
-    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }

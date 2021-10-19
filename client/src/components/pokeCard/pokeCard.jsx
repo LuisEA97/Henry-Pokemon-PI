@@ -7,6 +7,7 @@ import { useSelector} from 'react-redux';
 const PokeCard = ({pokemon}) => {
     const bgCard = typeClass(pokemon.types[0].en).cardBg
     const [loadedImg, setLoadedImg] = useState(false) 
+    const [errorLoadImg, setErrorLoadImg] = useState(false)
     const loaded = () => {
         setLoadedImg(true)
     }
@@ -17,8 +18,9 @@ const PokeCard = ({pokemon}) => {
                 <span>{pokemon.attack}</span>
             </div>
             <div className={s.imageContainer}>
-                <img src={pokeball} alt="loading" className={`${s.loadingImg} ${s.loaderImg} spinning ${loadedImg? 'hidden' : ''}`} />
-                <img draggable="false" onLoad={loaded} src={pokemon.img} alt={`${pokemon.name}_pic`} />
+                <img src={pokeball} alt="loading" className={`${s.loadingImg} ${s.loaderImg} spinning ${!loadedImg || errorLoadImg? '' : 'hidden'}`} />
+                <img draggable="false" onLoad={loaded} onError={(e)=>{ if (e.target.src !== pokeball) 
+    { setErrorLoadImg(true)} }} src={pokemon.img} alt={`${pokemon.name}_pic`} className={`${errorLoadImg || !loadedImg? 'hidden' : ''}`}/>
             </div>
             <h2 className={`${s.name} consola`}>{pokemon.name}</h2>
             <div className={s.pillsHolder}>

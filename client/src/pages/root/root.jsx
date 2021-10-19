@@ -14,7 +14,7 @@ const Root = () => {
     const [loadingTypes, setLoadingTypes] = useState(true)
     const [errorLoad, setErrorLoad] = useState(null)
     const [errorType, setErrorType] = useState(null)
-    const pokemons = useSelector(store => store.pokemonsFromAPI)
+    const pokemons = useSelector(store => store.filtered)
     const localPokemons = useSelector(store => store.localPokemons)
     const dispatch = useDispatch();
 

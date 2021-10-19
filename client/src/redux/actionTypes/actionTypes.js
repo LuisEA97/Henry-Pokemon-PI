@@ -6,5 +6,6 @@ export const ADD_NEW_POKEMON = 'ADD_NEW_POKEMON';
 export const FETCHING_ERRORS = 'FETCHING_ERRORS';
 export const CLEAR_LOCAL_POKEMONS = 'CLEAR_LOCAL_POKEMONS';
 export const UPDATE_LOCAL_POKEMONS = 'UPDATE_LOCAL_POKEMONS';
+export const FILTER_BY = 'FILTER_BY';
 export const SET_EN = 'SET_EN'
 export const SET_ES = 'SET_ES'

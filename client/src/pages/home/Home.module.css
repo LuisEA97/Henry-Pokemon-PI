@@ -1,20 +1,25 @@
 .main{
     display: flex;
     flex-direction: column;
-    padding: 10px;
+    /* padding: 10px; */
+    background-color: #080b14;
+    color: #F9FAFB;
+    font-weight: 600;
     align-items: center;
     text-align: center;
 }
 .Cards{
     display: flex;
-    margin: 0 10px 0 10px;
+    /* margin: 0 10px 0 10px; */
     flex-wrap: wrap;
     justify-content: center;
     align-self: center;
+    
 }
 .filterHolder{
     display: flex;
     flex-direction: column;
+    padding-bottom: 10px;
 }
 .filters{
     display: flex;

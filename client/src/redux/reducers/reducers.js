@@ -8,10 +8,12 @@ import {
     CLEAR_LOCAL_POKEMONS,
     SET_EN,
     SET_ES,
-    FILTER_BY
+    FILTER_BY,
+    SET_NAVBAR_BG
 } from "../actionTypes/actionTypes";
 
 const initalState = {
+    navbarBg: '',
     pokemonsFromAPI: [],
     localPokemons: [],
     filteredAPI: [],
@@ -24,6 +26,11 @@ const initalState = {
 
 function rootReducer(state = initalState, action){
     switch(action.type){
+        case SET_NAVBAR_BG:
+            return{
+                ...state,
+                navbarBg: action.payload
+            }
         case LIST_ALL_POKEMONS:
             return{
                 ...state,
@@ -38,7 +45,8 @@ function rootReducer(state = initalState, action){
         case FIND_POKEMON_BY_NAME:
             return{
                 ...state,
-                filtered: action.payload
+                filteredAPI: action.payload[0],
+                filteredLocal: action.payload[1]
             }
         case GET_POKEMON_TYPES:
             return{

@@ -9,7 +9,8 @@ import {
     UPDATE_LOCAL_POKEMONS,
     SET_EN,
     SET_ES,
-    FILTER_BY
+    FILTER_BY,
+    SET_NAVBAR_BG
 } from "../actionTypes/actionTypes";
 
 const axios = require('axios').default
@@ -88,5 +89,11 @@ export function filterBy(activeFilters){
     return{
         type: FILTER_BY,
         payload: activeFilters
+    }
+}
+export function setNavbarBg(color){
+    return{
+        type: SET_NAVBAR_BG,
+        payload: color
     }
 }

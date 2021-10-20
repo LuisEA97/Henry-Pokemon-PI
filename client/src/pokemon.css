@@ -127,3 +127,8 @@
     background-color: #111827;
     color: #F9FAFB;
 }
+/* Background color for pokemon page*/
+.GrassPageBg{
+  background-color: #255048;
+  color: white;
+}

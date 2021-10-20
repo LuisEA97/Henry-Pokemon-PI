@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import s from './styles/Pagination.module.css'
 import PokeCard from '../pokeCard/pokeCard'
 
 const Pagination = ({itemsPerPage, showing}) => {
+    const cards = useRef()
     let pokemons = useSelector(store => store.filteredAPI)
     let pokemonsLocal = useSelector(store => store.filteredLocal)
     const lang = useSelector(store => store.lang);
@@ -15,7 +16,10 @@ const Pagination = ({itemsPerPage, showing}) => {
     const lastItem = currentPage * itemsPerPage;
     const firstItem = lastItem - itemsPerPage;
     let currentItems = null
-    const navigate = (number) => setCurrentPage(number)
+    const navigate = (number) => {
+        setCurrentPage(number);
+        cards.current.scrollTo(0,0)
+    }
 
     if(showing === 'fromAPI'){
         if(pokemons.length === 0) empty = true
@@ -35,11 +39,12 @@ const Pagination = ({itemsPerPage, showing}) => {
 
     useEffect(() => {
         setCurrentPage(1)
+        cards.current.scrollTo(0,0)
     }, [pokemons])
 
     return (
         <div className={s.pagination}>
-            <div className={`${s.itemsHolder} custom-scrollbar`}>
+            <div className={`${s.itemsHolder} custom-scrollbar`} ref={cards}>
                 {!empty ?
                     currentItems.map(pokemon => <PokeCard key={pokemon.id} pokemon={pokemon}/>)
                  : (

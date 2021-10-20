@@ -1,21 +1,15 @@
-import { BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Root from '../pages/root/root';
-import Home from '../pages/home/Home';
-import './App.css';
+import React from "react";
+import Routes from "./Routes.jsx";
+import { withRouter } from "react-router-dom";
+import NavBar from '../components/navBar/NavBar';
 
-function App() {
+const App = ({ location }) => {
   return (
-    <Router>
-      <Switch>
-        <Route exact path='/'>
-          <Root />
-        </Route>
-        <Route exact path='/home'>
-          <Home />
-        </Route>
-      </Switch>
-    </Router>
+    <div>
+      {location.pathname !== '/' &&  <NavBar />}
+      <Routes />
+    </div>
   );
 }
 
-export default App;
+export default withRouter(App);

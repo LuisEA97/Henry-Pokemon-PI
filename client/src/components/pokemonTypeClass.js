@@ -70,7 +70,7 @@ export const pokemonTypeClass = (pokeType) => {
             return {
                 cardBg: 'GrassBgCard',
                 pill: 'GrassBgPill',
-                pageBg: ''
+                pageBg: 'GrassPageBg'
             }
         case 'Electric':
             return {
@@ -116,8 +116,8 @@ export const pokemonTypeClass = (pokeType) => {
             }
         case 'Shadow':
             return {
-                cardBg: '',
-                pill: '',
+                cardBg: 'DarkBgCard',
+                pill: 'DarkBgPill',
                 pageBg: ''
             }
         default: 

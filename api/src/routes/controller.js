@@ -17,9 +17,7 @@ async function getPokemons(req, res){
     let apiResult = [];
     const findPoke = await Pokemon.findAll({
       where: {
-        name: {
-          [Op.like]: `%${name}%`
-        }
+        name: name
       },
       include: [{
         model: Types,

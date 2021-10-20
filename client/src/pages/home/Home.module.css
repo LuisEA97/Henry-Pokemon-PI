@@ -1,7 +1,6 @@
 .main{
     display: flex;
     flex-direction: column;
-    /* padding: 10px; */
     background-color: #080b14;
     color: #F9FAFB;
     font-weight: 600;
@@ -23,4 +22,30 @@
 }
 .filters{
     display: flex;
+}
+.navigation{
+    padding: 10px 40px 0 40px;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.navgroups{
+    display: flex;
+}
+.nav_button{
+    padding: 10px 20px;
+    color: #F9FAFB;
+    font-weight: 600;
+}
+.nav_button:focus,
+.nav_button:active{
+    outline: none;
+}
+.nav_active{
+    background-color: #ffc62a;
+    color: #01264B;
+}
+.nav_unactive{
+    border: 1px solid #ffc62a;
+    border-bottom: 0;
 }

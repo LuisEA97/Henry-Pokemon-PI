@@ -54,14 +54,23 @@ const NavBar = () => {
   };
 
   return (
-    <div style={{ backgroundColor: `${color}` }}>
-      <nav nav className={s.nav} >
+    <div className={s.nav_shadow} style={{ backgroundColor: `${color}` }}>
+      <nav className={s.nav} >
         <Link draggable="false" to="/home">
           <div className={s.logoContainer}>
             <img draggable="false" src={logo} alt="pokemon" />
           </div>
         </Link>
         <div className={s.options}>
+          <div className={s.create}>
+            <Link to='/home/create'>
+              <button className={`${s.link}`}>
+                <span>
+                  {lang === 'en' ? 'Create' : 'Crear'}
+                </span>
+              </button>
+            </Link>
+          </div>
           <div className={s.search}>
             <form
               onSubmit={(e) => {
@@ -89,8 +98,8 @@ const NavBar = () => {
                   value={searchPokemon}
                   placeholder={
                     lang === "en"
-                      ? "Type something to search "
-                      : "Escribe algo para buscar"
+                      ? "Search a pokemon"
+                      : "Busca un pokémon"
                   }
                 />
                 {showingResults ? (

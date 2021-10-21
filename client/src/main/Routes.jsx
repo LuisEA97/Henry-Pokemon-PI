@@ -4,6 +4,7 @@ import Root from '../pages/root/root';
 import Home from '../pages/home/Home';
 import './App.css';
 import Details from '../pages/details/Details';
+import Create from '../pages/create/Create';
 
 const Routes = () => {
     return (
@@ -17,7 +18,10 @@ const Routes = () => {
                     <Home />
                 </Route>
 
-                <Route exact path="home/details/:id" render={({ match }) => <Details id={match.params.id} />} />
+                <Route exact path="/home/details/:id" render={({ match }) => <Details id={match.params.id} />} />
+                <Route exact path='/home/create'>
+                    <Create />
+                </Route>
 
             </Switch>
         </main>

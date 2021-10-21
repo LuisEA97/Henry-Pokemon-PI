@@ -101,7 +101,7 @@ async function getPokemons(req, res){
 
       if(pokemons.length > 0 && pokemons.length === limit) return res.status(200).json([pokemons, localPokemons])
 
-      const search = await api.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit}`)
+      const search = await api.get(`https://pokeapi.co/api/v2/pokemon?offset=80&limit=${limit}`)
       const pokes = search.data
 
       pokemons = []

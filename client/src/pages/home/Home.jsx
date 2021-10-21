@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import s from "./Home.module.css";
+import s from "./styles/Home.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import Pagination from "../../components/pagination/Pagination";

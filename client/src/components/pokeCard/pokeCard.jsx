@@ -47,7 +47,7 @@ const PokeCard = ({ pokemon }) => {
         ))}
       </div>
       <div className={`${s.linkHolder}`}>
-        <Link to={`/home/details/${pokemon.id}`}>
+        <Link to={`home/details/${pokemon.id}`}>
           <button className={`${s.detailsBtn}`}>
             <div className={`${s.aux}`}>
               <span className={`${s.detailsBtnText}`}>

@@ -19,7 +19,7 @@ const initalState = {
     filteredAPI: [],
     filteredLocal: [],
     types: [],
-    pokeById: {},
+    pokeById: '',
     error: {},
     lang: 'es'
 }

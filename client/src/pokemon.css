@@ -129,6 +129,78 @@
 }
 /* Background color for pokemon page*/
 .GrassPageBg{
-  background-color: #255048;
+  background-color: #286e55;
   color: white;
+}
+.FirePageBg{
+  background-color: #b1571b;
+  color: white;
+}
+.WaterPageBg{
+  background-color: #354c99;
+  color: white;
+}
+.BugPageBg{
+  background-color: #615728;
+  color: white;
+}
+.NormalPageBg{
+  background-color: #c0703b;
+  color: white;
+}
+.PoisonPageBg{
+  background-color: #4b4892;
+  color: white;
+}
+.ElectricPageBg{
+  background-color: #d8b73f;
+  color: white;
+}
+.GroundPageBg{
+  background-color: #614f28;
+  color: white;
+}
+.FairyPageBg{
+  background-color: #c5457f;
+  color: white;
+}
+.GhostPageBg{
+  background-color: #372f70;
+  color: white;
+}
+.IcePageBg{
+  background-color: #cbddf0;
+  color: #111827;
+}
+.FightingPageBg{
+  background-color: #e45b56;
+  color: white;
+}
+.PsychicPageBg{
+  background-color: #784fb6;
+  color: white;
+}
+.RockPageBg{
+  background-color: #35311c;
+  color: white;
+}
+.DarkPageBg{
+  background-color: #080b14;
+  color: white;
+}
+.ShadowPageBg{
+  background-color: #111524;
+  color: white;
+}
+.FlyingPageBg{
+  background-color: #9db6d3;
+  color: #111827;
+}
+.SteelPageBg{
+  background-color: #dee0e0;
+  color: #111827;
+}
+.DragonPageBg{
+  background-color: #97341b;
+  color: #111827;
 }

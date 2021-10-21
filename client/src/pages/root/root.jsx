@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import s from './root.module.css';
+import s from './styles/root.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import { setEn, setEs, listAllPokemons, getPokemonTypes } from '../../redux/actions/actions'
 import logo from "../../img/logo.png";

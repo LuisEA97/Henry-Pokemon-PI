@@ -1,15 +1,160 @@
-/* .Details{
+.pokemonPage{
+    display: flex;
+    height: 100vh;
+    padding-top: 20%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.loadingBg{
+    width: 100%;
+    height: calc(100vh - 64px);
+    background-color: #1E3A8A;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.photoLayer{
+.loadingMsg{
+    margin-top: 20px;
+    color: #F9FAFB;
+    font-size: 1.7rem;
+    font-weight: 500;
+}
+.image{
+    width: 290px;
+    height: 290px;
+    position: absolute;
+    top: -200px;
+    left: 38%;
+    z-index: 200;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+    background-color: #F9FAFB;
+    color: black;
+    position: relative;
+    top: 160px;
+    width: 100%;
+    padding:  90px 50px;
+    border-radius: 6% 6% 40% 27% / 12% 11% 0% 0%;
+
+    box-shadow:
+    0.4px 0px 2.7px rgba(0, 0, 0, 0.065),
+    0.9px 0px 6.4px rgba(0, 0, 0, 0.093),
+    1.8px 0px 12px rgba(0, 0, 0, 0.115),
+    3.1px 0px 21.4px rgba(0, 0, 0, 0.137),
+    5.8px 0px 40.1px rgba(0, 0, 0, 0.165),
+    14px 0px 96px rgba(0, 0, 0, 0.23)
+    ;
+
+}
+.titleHolder{
+    margin-bottom: 20px;
+}
+.title{
+    text-align: center;
+    color: #080b14;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-transform: capitalize;
+}
+.measurements{
+    display: inline-flex;
+    align-self: center;
+}
+.m_size{
+    margin: 0 20px;
+    color: #4B5563;
+    position: relative;
+}
+.measurements > .m_size:first-child::after{
+    content: '';
+    position: absolute;
+    right: -20px;
+    top: 12px;
+    width: 5px;
+    height: 5px;
+    border-radius: 9999px;
+    background-color: #1F2937;
+}
+.m_size *{
+    align-self: center;
+}
+.m_title{
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+.m_detail{
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 1.2rem;
+    font-weight: 400;
+}
+.typesHolder{
+    margin-top: 23px;
+    display: flex;  
+    justify-content: center; 
+}
+.pill{
+    display: inline-flex;
+    font-weight: 600;
+    font-size: 1.15rem;
+    margin: 0 5px;
+    padding: 1px 10px;
+    border-radius: 9999px;
+}   
+.statsTitle{
+    width: 100%;
+    border-bottom: 1px solid #080b14;
+    font-weight: 700;
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+}
+.stats{
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw * 0.7 );
+    justify-content: start;
+    align-items: flex-start;
+    place-self: center;
+}
+.describeStat{
     display: flex;
     width: 100%;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    margin: 12px 0;
 }
-.photo{
-    max-width: 290px;
-} */
+.describeStat *{
+    align-self: center;
+    place-self: center;
+}
+.statName{
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-right: 25px;
+    color: #4B5563;
+    width: 20%;
+    margin: 0 15px;
+}
+.statValue{
+    text-align: end;
+    font-weight: 600;
+    font-size: 1.2rem;
+    margin-right: 25px;
+    color: #1F2937;
+    width: 10%;
+    margin: 0 15px;
+}
+.progressStat{
+    align-self: center;
+    width: 70%;
+    margin-right: 12px;
+}

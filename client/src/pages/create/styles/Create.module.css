@@ -1,0 +1,171 @@
+.createPage{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+    background-color: #01264B;
+    color: #F9FAFB;
+    font-weight: 600;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+.input{
+    margin: 0 10px;
+    display: inline-flex;
+    flex-direction: column;
+}
+.input input{
+    outline: none;
+    margin-top: 5px;
+    color: #fdcc44;
+    background-color: inherit;
+    border-bottom: 2px solid #F9FAFB;
+    padding: 2px 15px 0 15px;
+    font-weight: 500;
+}
+.input input::placeholder{
+    color: #bebebed5;
+}
+.name_input{
+    width: 30%;
+}
+.url_input{
+    width: 60%;
+}
+.title{
+    font-size: 2rem;
+}
+.spaceForm{
+    margin-top: 40px;
+    width:88%;
+    padding: 40px 60px;
+    background-color: #021830;
+    border: 2px solid #F9FAFB;
+    border-radius: 10px;
+    font-size: 1.12rem;
+    box-shadow: 1px -5px 28px 9px rgba(0,0,0,0.44);
+    -webkit-box-shadow: 1px -5px 28px 9px rgba(0,0,0,0.44);
+    -moz-box-shadow: 1px -5px 28px 9px rgba(0,0,0,0.44);
+}
+.formCreate{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+.types_title{
+    border-bottom: 2px solid #F9FAFB;
+    margin-bottom: 10px;
+}
+.pokemon_types_div{
+    margin-top: 15px;
+    margin-bottom: 45px;
+}
+.form_row{
+    display: flex;
+    margin-bottom: 30px;
+}
+.number_input{
+    margin: 0 25px;
+    width:max-content;
+}
+.number_input input{
+    width: 6rem;
+    padding-left: 0!important;
+    padding-right: 0!important;
+}
+.number_input > label{
+    width: max-content;
+}
+.row_types{
+    display: flex;
+    justify-content: center;
+}
+.type_option{
+    margin: 0 20px;
+    position: relative;
+}
+.type_option > input{
+    margin-right: 10px;
+    visibility: hidden;
+}
+.custom_check{
+    position: absolute;
+    top: calc(50% - 6px);
+    left: 4px;
+    height: 12.4px;
+    width: 12.4px;
+    background-color: inherit;
+    border-radius: 2px;
+    border: #F9FAFB solid 1px;
+}
+.custom_check::after{
+    content: '';
+    position: absolute;
+    display: none;
+}
+.type_option input:checked ~ .custom_check{
+    background-color: #ffc62a;
+    border: none;
+}
+.type_option input:checked ~ .custom_check::after{
+    display: block;
+}
+.type_option input:disabled ~ .typeText {
+    color: #dbdbdbb6;
+}
+.type_option input:disabled ~ .custom_check {
+    border: #dbdbdbb6 solid 1px;
+}
+.type_option .custom_check::after{
+    left: 4px;
+    bottom: 3px;
+    width: 6px;
+    height: 10px;
+    border: solid #01264B;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.help_button{
+    margin-left: 10px;
+    width: 25px;
+    height: 25px;
+    font-size: 15px;
+    font-weight: 600;
+    border: 2px solid #F9FAFB;
+    border-radius: 20px;
+    transition: all 0.2s;
+
+}
+.help_button:hover{
+    border: none;
+    background-color: #ffc62a;
+    font-size: 15px;
+    font-weight: 600;
+    color: #021830;
+}
+.help_button:active{
+    border: none;
+    background-color: #d8a20d;
+    font-size: 15px;
+    font-weight: 600;
+    color: #021830;
+}
+.submit_holder{
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: flex-end;
+    justify-self: flex-end;
+}
+.submit_button{
+    height: fit-content;
+    border: 2px solid #F9FAFB;
+    align-self: center;
+    padding: 5px 20px;
+    font-weight: 500;
+}

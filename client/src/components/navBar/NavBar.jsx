@@ -66,7 +66,7 @@ const NavBar = () => {
             <Link to='/home/create'>
               <button className={`${s.link}`}>
                 <span>
-                  {lang === 'en' ? 'Create' : 'Crear'}
+                  {lang === 'en' ? 'Create your own Pokémons!' : '¡Crea tus Pokémones!'}
                 </span>
               </button>
             </Link>

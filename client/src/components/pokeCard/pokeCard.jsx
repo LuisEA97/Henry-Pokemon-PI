@@ -41,7 +41,7 @@ const PokeCard = ({ pokemon }) => {
       <h2 className={`${s.name} consola`}>{pokemon.name}</h2>
       <div className={s.pillsHolder}>
         {pokemon.types.map((type) => (
-          <div className={`${s.pill} shadow-small ${typeClass(type.en).pill}`}>
+          <div key={type.en} className={`${s.pill} shadow-small ${typeClass(type.en).pill}`}>
             <span>{lang === "es" ? type.es : type.en}</span>
           </div>
         ))}

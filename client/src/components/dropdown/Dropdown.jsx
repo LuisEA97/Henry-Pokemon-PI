@@ -4,8 +4,7 @@ import s from './styles/Dropdown.module.css'
 const Dropdown = ({list, lang, message, cb}) => {
     const [active, setActive] = useState(false)
     const [selected, setSelected] = useState('')
-    useEffect(() => {
-        console.log(active);
+  useEffect(() => {
     }, [active])
 
     const isActive =()=>{

@@ -6,7 +6,6 @@ const {Pokemon, Types} = require('../db.js')
 
 let pokemons = []
 const limit = 40;
-/* https://pokeapi.co/api/v2/pokemon?limit=${limit} */
 
 async function getPokemons(req, res){
   let { name } = req.query

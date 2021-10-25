@@ -110,7 +110,7 @@ const Details = ({ id }) => {
                     </div>
                     <div className={s.typesHolder}>
                         {pokemon.types.map((type) => (
-                            <div className={`${s.pill} shadow-small ${typeClass(type.en).pill}`}>
+                            <div key={type.en} className={`${s.pill} shadow-small ${typeClass(type.en).pill}`}>
                                 <span>{lang === "es" ? type.es : type.en}</span>
                             </div>
                         ))}

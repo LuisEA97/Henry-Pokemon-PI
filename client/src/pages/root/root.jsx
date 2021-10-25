@@ -106,7 +106,7 @@ const Root = () => {
             <div>
               <span className={`${s.errorStatus} consola`}>
                 {lang === "en"
-                  ? `We couldnt catch pokemons`
+                    ? "We couldn't catch pokemons"
                   : `No pudimos atrapar los pokemones`}
               </span>
             </div>
@@ -119,7 +119,7 @@ const Root = () => {
                   draggable="false"
                   src={pokebola}
                   alt="icon"
-                  className={`${s.pokeball} $spinning`}
+                  className={`${s.pokeball} spinning`}
                 />
                 <span className={`${s.loadingStatus}`}>
                   {lang === "es"
@@ -146,7 +146,7 @@ const Root = () => {
             <div>
               <span className={`${s.errorStatus} consola`}>
                 {lang === "en"
-                  ? `We couldnt get pokemon types`
+                    ? "We couldn't get pokemon types"
                   : `No pudimos obtener los tipos de pokemones`}
               </span>
             </div>

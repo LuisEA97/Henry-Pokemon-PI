@@ -56,3 +56,27 @@ nav{
     align-items: center;
     height: 100%;
 }
+.centered{
+    align-self: center;
+    justify-content: center;
+    font-size: 1.2rem;
+}
+.createPokemon{
+    padding-top: 20px;
+}
+.link_button{
+    display: inline-flex;
+    font-weight: 700;
+    background-color:#ffc62a;
+    color:#111827;
+    padding: 2px 20px;
+    border-radius: 10px;
+    transition: all ease-in-out 0.2s;
+}
+.link_button:hover{
+    background-color: #e48c08;
+    color:#111827;
+    box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.3)  ; 
+	-webkit-box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.3)  ; 
+	-moz-box-shadow: 3px 3px 25px rgba(0, 0, 0, 0.3)  ; 
+}

@@ -10,6 +10,19 @@
     align-items: center;
     padding: 50px;
 }
+.full{
+    display: inherit;
+    flex-direction: column;
+    min-height: calc(100vh - 10rem);
+    justify-content: center;
+    align-items: center;
+}
+.message{
+    display: flex;
+}
+.created_title{
+    font-size: 1.8rem;
+}
 .input{
     margin: 0 10px;
     display: inline-flex;
@@ -47,6 +60,7 @@
     box-shadow: 1px -5px 28px 9px rgba(0,0,0,0.44);
     -webkit-box-shadow: 1px -5px 28px 9px rgba(0,0,0,0.44);
     -moz-box-shadow: 1px -5px 28px 9px rgba(0,0,0,0.44);
+    transition: all ease-in-out 0.25s;
 }
 .formCreate{
     width: 100%;
@@ -62,6 +76,10 @@
 .pokemon_types_div{
     margin-top: 15px;
     margin-bottom: 45px;
+}
+.pokemon_types_div label{
+    user-select: none;
+    cursor: pointer;
 }
 .form_row{
     display: flex;
@@ -145,7 +163,7 @@
     border: none;
     background-color: #ffc62a;
     font-size: 15px;
-    font-weight: 600;
+    font-weight: 700;
     color: #021830;
 }
 .help_button:active{
@@ -168,4 +186,63 @@
     align-self: center;
     padding: 5px 20px;
     font-weight: 500;
+    transition: all ease-in-out 0.25s;
 }
+.submit_button:hover{
+    background-color: #d8a20d;
+    color: #021830;
+    border-color: #d8a20d;
+}
+.submit_button:disabled{
+    background-color: #0f273fc0;
+    color: #b6b6b6c9;
+    border-color: #b6b6b6c9;
+}
+.errorForm{
+    color: rgb(228, 124, 124);
+}
+.countdown {
+    position: relative;
+    margin: auto;
+    margin-top: 100px;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+  }
+  
+.countdown-number {
+    color: white;
+    display: inline-block;
+    line-height: 40px;
+  }
+.counter{
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 40px;
+    transform: rotateY(-180deg) rotateZ(-90deg);
+  }
+  
+.svg .circle {
+    stroke-dasharray: 113px;
+    stroke-dashoffset: 0px;
+    stroke-linecap: round;
+    stroke-width: 2px;
+    stroke: white;
+    fill: none;
+    animation: countdown 6s linear infinite forwards;
+  }
+  
+  @keyframes countdown {
+    from {
+      stroke-dashoffset: 0px;
+    }
+    to {
+      stroke-dashoffset: 113px;
+    }
+  }

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import s from './styles/Pagination.module.css'
 import PokeCard from '../pokeCard/pokeCard'
+import { Link } from "react-router-dom";
 
 const Pagination = ({itemsPerPage, showing}) => {
     const cards = useRef()
@@ -50,7 +51,19 @@ const Pagination = ({itemsPerPage, showing}) => {
                  : (
                      <div className={s.empty}>
                          <div className={s.centered}>
-                         <h2>{lang === 'en' ? 'Nothing to see here...' : 'No hay resultados...'}</h2>
+                                <h2>{lang === 'en' ? "We couldn't catch any pokémons here" : 'No pudimos atrapar pokémones aquí'}</h2>
+                                <h3>
+                                    {lang === 'en' ? "Do you want to create one?" : "¿Quieres crear uno?"}
+                                </h3>
+                                <div className={s.createPokemon}>
+                                    <Link to='/home/create' >
+                                        <button className={s.link_button}>
+                                            <span>
+                                                {lang === 'en' ? 'Create' : 'Crear'}
+                                            </span>
+                                        </button>
+                                    </Link>
+                                </div>
                          </div>
                      </div>
                  )} 

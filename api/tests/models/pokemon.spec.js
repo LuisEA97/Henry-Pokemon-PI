@@ -1,4 +1,4 @@
-const { Pokemon, conn } = require('../../src/db.js');
+const { Types, Pokemon, conn } = require('../../src/db.js');
 const { expect } = require('chai');
 
 describe('Pokemon model', () => {
@@ -14,7 +14,7 @@ describe('Pokemon model', () => {
           .then(() => done(new Error('It requires a valid name')))
           .catch(() => done());
       });
-      it('should work when its a valid name', () => {
+      it('should work with valid data', () => {
         Pokemon.create({ name: 'Pikachu' });
       });
     });

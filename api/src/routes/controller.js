@@ -83,6 +83,8 @@ async function getPokemons(req, res){
 
   } else {
     try {
+      let { limit_call } = req.query
+      if(!limit_call) limit_call = limit
       let localPokemons = [];
       const localPokes = await Pokemon.findAll({
         attributes: ['id', 'name', 'img', 'attack'],
@@ -98,9 +100,9 @@ async function getPokemons(req, res){
         localPokemons = data
       })
 
-      if(pokemons.length > 0 && pokemons.length === limit) return res.status(200).json([pokemons, localPokemons])
+      if(pokemons.length > 0 && pokemons.length === limit_call) return res.status(200).json([pokemons, localPokemons])
 
-      const search = await api.get(`https://pokeapi.co/api/v2/pokemon?offset=80&limit=${limit}`)
+      const search = await api.get(`https://pokeapi.co/api/v2/pokemon?limit=${limit_call}`)
       const pokes = search.data
 
       pokemons = []

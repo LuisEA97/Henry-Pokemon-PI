@@ -104,7 +104,10 @@ const Create = () => {
                 })
             }
         }
-        if (e.target.type === 'number') value = Number(value.replace(/\D/g, ''))
+        if (e.target.type === 'number') {
+            value = Number(value.replace(/\D/g, ''))
+            if (value > 255) value = 255
+        }
         if (e.target.type === 'text') value = value.toLowerCase()
         setNewPokemon({
             ...newPokemon,
@@ -186,7 +189,7 @@ const Create = () => {
 
     useEffect(() => {
 
-        if (Object.values(newPokemon).some(e => e == false) || !newPokemon.types.length) {
+        if (Object.values(newPokemon).some(e => e == false) || Object.values(errorForm).some(e => e.length > 0) || !newPokemon.types.length) {
             setDisabledBtn(true)
         }
         else {
@@ -250,7 +253,7 @@ const Create = () => {
                                 id="pokemon-name"
                                 name="name"
                                 value={newPokemon.name}
-                                placeholder={lang === 'en' ? 'Give it a cool name' : 'Escribe un nombre creativo'} />
+                                placeholder={lang === 'en' ? 'Choose a cool name' : 'Escribe un nombre creativo'} />
                             <span className={s.errorForm}>{errorForm.name[lang]}</span>
                         </label>
                         <label className={`${s.input} ${s.url_input}`}>
@@ -309,8 +312,9 @@ const Create = () => {
                             <div>
                                 <input
                                     onChange={handleChangeInput}
-                                    type="number" onKeyPressCapture={isInputNumber}
+                                    type="number"
                                     min='1'
+                                    onKeyPressCapture={isInputNumber}
                                     id="pokemon-height"
                                     name="height"
                                     placeholder="1 dm."
@@ -334,14 +338,15 @@ const Create = () => {
                             <div>
                                 <input
                                     onChange={handleChangeInput}
-                                    type="number" onKeyPressCapture={isInputNumber}
+                                    type="number"
+                                    min='1' onKeyPressCapture={isInputNumber}
                                     id="pokemon-weight"
                                     name="weight"
                                     value={newPokemon.weight}
                                     placeholder="1 hg."
                                 />
                                 <button className={s.help_button}>
-                                    <Tooltip width='210px' text={lang === 'en' ? 'Set weight in hectograms (1 hg. = 100 gr.)' : 'Ingresa la altura en hectógramos (1 hg = 100 gr.)'}>
+                                    <Tooltip width='210px' text={lang === 'en' ? 'Set weight in hectograms (1 hg. = 0.1 Kg.)' : 'Ingresa la altura en hectógramos (1 hg = 0.1 Kg.)'}>
                                         <span>?</span>
                                     </Tooltip>
                                 </button>
@@ -356,11 +361,12 @@ const Create = () => {
                             </label>
                             <input
                                 onChange={handleChangeInput}
-                                type="number" onKeyPressCapture={isInputNumber}
+                                type="number"
+                                min='1' onKeyPressCapture={isInputNumber}
                                 id="pokemon-hp"
                                 name="hp"
                                 value={newPokemon.hp}
-                                placeholder="1-256" />
+                                placeholder="1-255" />
                         </label>
 
                         <label className={`${s.input} ${s.number_input}`}>
@@ -371,10 +377,11 @@ const Create = () => {
                             </label>
                             <input
                                 onChange={handleChangeInput}
-                                type="number" onKeyPressCapture={isInputNumber}
+                                type="number"
+                                min='1' onKeyPressCapture={isInputNumber}
                                 id="pokemon-attack"
                                 value={newPokemon.attack}
-                                name="attack" placeholder="1-256" />
+                                name="attack" placeholder="1-255" />
                         </label>
 
                         <label className={`${s.input} ${s.number_input}`}>
@@ -385,12 +392,13 @@ const Create = () => {
                             </label>
                             <input
 
-                                type="number" onKeyPressCapture={isInputNumber}
+                                type="number"
+                                min='1' onKeyPressCapture={isInputNumber}
                                 id="pokemon-sp_attack"
                                 name="special_attack"
                                 onChange={handleChangeInput}
                                 value={newPokemon.special_attack}
-                                placeholder="1-256" />
+                                placeholder="1-255" />
                         </label>
 
                     </div>
@@ -407,12 +415,13 @@ const Create = () => {
                                 }
                             </label>
                             <input type="number"
+                                min='1'
                                 onKeyPressCapture={isInputNumber}
                                 onChange={handleChangeInput}
                                 id="pokemon-speed"
                                 name="speed"
                                 value={newPokemon.speed}
-                                placeholder="1-256" />
+                                placeholder="1-255" />
                         </label>
                         <label className={`${s.input} ${s.number_input}`}>
                             <label htmlFor="pokemon-defense">
@@ -422,12 +431,13 @@ const Create = () => {
                             </label>
                             <input
                                 type="number"
+                                min='1'
                                 onKeyPressCapture={isInputNumber}
                                 onChange={handleChangeInput}
                                 id="pokemon-defense"
                                 name="defense"
                                 value={newPokemon.defense}
-                                placeholder="1-256" />
+                                placeholder="1-255" />
                         </label>
                         <label className={`${s.input} ${s.number_input}`}>
                             <label htmlFor="pokemon-sp_defense">
@@ -437,12 +447,13 @@ const Create = () => {
                             </label>
                             <input
                                 type="number"
+                                min='1'
                                 onKeyPressCapture={isInputNumber}
                                 onChange={handleChangeInput}
                                 id="pokemon-sp_defense"
                                 name="special_defense"
                                 value={newPokemon.special_defense}
-                                placeholder="1-256" />
+                                placeholder="1-255" />
                         </label>
                         <div className={s.submit_holder}>
                             <button ref={submitBtn} className={s.submit_button} disabled={disabledBtn} type="submit">

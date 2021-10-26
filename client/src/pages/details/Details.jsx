@@ -7,11 +7,13 @@ import { pokemonTypeClass as typeClass } from "../../components/pokemonTypeClass
 import ProgressBar from "../../components/progressBar/ProgressBar";
 import pokeball from '../../img/pokeball_lg.png'
 import questionMark from '../../img/question mark.png'
+import { Link } from "react-router-dom";
 
 
 const Details = ({ id }) => {
     const [errorLoadImg, setErrorLoadImg] = useState(false)
     const lang = useSelector((store) => store.lang);
+    const [errorLoad, setErrorLoad] = useState(false)
     const reduxData = useSelector(store => store.pokeById)
     const [loading, setLoading] = useState(true)
     const [background, setBackground] = useState('')
@@ -59,9 +61,37 @@ const Details = ({ id }) => {
                         dispatch(setNavbarBg(nb))
                         setLoading(false)
                     })
+                    .catch((e) => {
+                        console.log(e);
+                        setErrorLoad(true)
+                    })
             }
         }
     }, [])
+
+    if (errorLoad) {
+        dispatch(setNavbarBg('#e45b56'))
+        return (
+            <div className={s.error_container}>
+                <img src={questionMark}
+                    draggable="false" alt="error" className={s.image_errorLoad} width="200px" />
+                <h2>
+                    {
+                        lang === 'en' ? "We couldn't find this pokémon :(" : 'No pudimos encontrar este pokémon :('
+                    }
+                </h2>
+                <div className={s.go_home}>
+                    <Link to='/home' >
+                        <button className={s.link_button}>
+                            <span>
+                                {lang === 'en' ? 'Go home' : 'Volver a inicio'}
+                            </span>
+                        </button>
+                    </Link>
+                </div>
+            </div>
+        )
+    }
 
     return (
         loading ? (

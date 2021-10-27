@@ -6,7 +6,7 @@ const { Pokemon, conn } = require('../../src/db.js');
 
 const agent = session(app);
 const pokemon = {
-  name: 'pikachu cholo',
+  name: 'pikachu con gorra',
   img: 'http://assets.stickpng.com/images/580b57fcd9996e24bc43c325.png',
   weight: 15,
   height: 4,

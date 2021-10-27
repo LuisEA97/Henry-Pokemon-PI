@@ -2,7 +2,7 @@
 const { expect } = require('chai');
 const session = require('supertest-session');
 const app = require('../../src/app.js');
-const { Pokemon, Types, conn } = require('../../src/db.js');
+const { conn } = require('../../src/db.js');
 
 const agent = session(app);
 const pokemon = {
@@ -16,8 +16,8 @@ const pokemon = {
   special_attack: 75,
   special_defense: 80,
   speed: 85,
+  types: [13, 17]
 };
-const types= [13, 17]
 
 describe('Pokemon routes', () => {
   before(() => conn.authenticate()
@@ -39,6 +39,12 @@ describe('Pokemon routes', () => {
     it('should throw 404 with wrong id', async () => {
       const response = await agent.get('/pokemons/aaa')
       expect(response.status).to.be.equal(404)
+    })
+  })
+  describe('POST /pokemons' , () => {
+    it('should create a Pokémon and return it', async() => {
+      const response = await agent.post('/pokemons').send(pokemon)
+      expect(response.body.name).to.be.equal('pikachu con gorra')
     })
   })
 });

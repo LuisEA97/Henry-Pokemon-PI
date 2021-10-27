@@ -23,18 +23,25 @@ const Pagination = ({itemsPerPage, showing}) => {
     }
 
     if(showing === 'fromAPI'){
-        if(pokemons.length === 0) empty = true
-        for (let i = 1; i <= Math.ceil(pokemons.length / itemsPerPage); i++) {
-            pageNumbers.push(i);        
+        if (pokemons.length === 0) {
+            empty = true
+        } else {
+            for (let i = 1; i <= Math.ceil(pokemons.length / itemsPerPage); i++) {
+                pageNumbers.push(i);
+            }
+            currentItems = pokemons.slice(firstItem, lastItem);
         }
-        currentItems = pokemons.slice(firstItem, lastItem);
+
     }
     if(showing === 'Local'){
-        if(pokemonsLocal.length === 0) empty = true
-        for (let i = 1; i <= Math.ceil(pokemonsLocal.length / itemsPerPage); i++) {
-            pageNumbers.push(i);        
+        if (pokemonsLocal.length === 0) {
+            empty = true
+        } else {
+            for (let i = 1; i <= Math.ceil(pokemonsLocal.length / itemsPerPage); i++) {
+                pageNumbers.push(i);
+            }
+            currentItems = pokemonsLocal.slice(firstItem, lastItem);
         }
-        currentItems = pokemonsLocal.slice(firstItem, lastItem);
     }
 
 

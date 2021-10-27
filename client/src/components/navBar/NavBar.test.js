@@ -24,8 +24,7 @@ describe("<NavBar />", () => {
                 </Provider>
             </BrowserRouter>
         )
-    })
-
+    });
     it('Should have two <Link /> tags', () => {
         expect(wrapper.find(Link)).toHaveLength(2);
     })

@@ -153,7 +153,7 @@ const Create = () => {
     async function handleSubmit(e) {
         e.preventDefault();
         if (!Object.values(newPokemon).some(e => e == false) && newPokemon.types.length) {
-            axios.post('http://localhost:3001/pokemons', newPokemon)
+            axios.post('/pokemons', newPokemon)
                 .then(response => {
                     console.log(response.data);
                     dispatch(addNewPokemon(response.data))
@@ -190,7 +190,7 @@ const Create = () => {
     }, [lang, created])
     useEffect(() => {
         axios
-            .get("http://localhost:3001/types")
+            .get("/types")
             .then((response) => {
                 dispatch(getPokemonTypes(response.data));
             })

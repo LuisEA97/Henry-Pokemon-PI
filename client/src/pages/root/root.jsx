@@ -30,7 +30,7 @@ const Root = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/pokemons`)
+      .get(`/pokemons`)
       .then((response) => {
         dispatch(listAllPokemons(response.data));
         setLoading(false);
@@ -41,7 +41,7 @@ const Root = () => {
       });
 
     axios
-      .get("http://localhost:3001/types")
+      .get("/types")
       .then((response) => {
         dispatch(getPokemonTypes(response.data));
         setLoadingTypes(false);

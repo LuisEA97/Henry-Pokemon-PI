@@ -51,7 +51,7 @@ const Details = ({ id }) => {
                 setLoading(false)
             } else {
                 setLoading(true)
-                axios.get(`http://localhost:3001/pokemons/${id}`)
+                axios.get(`/pokemons/${id}`)
                     .then(response => {
                         setPokemon(response.data)
                         dispatch(findPokemonById(response.data))

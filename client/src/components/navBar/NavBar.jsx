@@ -26,7 +26,7 @@ const NavBar = () => {
       setSearching(true);
       axios
         .get(
-          "http://localhost:3001/pokemons?name=" + searchPokemon.toLowerCase()
+          "/pokemons?name=" + searchPokemon.toLowerCase()
         )
         .then((response) => {
           dispatch(findPokemonByName(response.data));

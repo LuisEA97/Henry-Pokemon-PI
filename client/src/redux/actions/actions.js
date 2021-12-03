@@ -52,7 +52,7 @@ export function addNewPokemon(poke){
 
 export function updateLocalPokemons(){
     return function(dispatch){
-        return axios.get('http://localhost:3001/pokemons/local')
+        return axios.get('/pokemons/local')
         .then(response => {
             dispatch({
                 type: UPDATE_LOCAL_POKEMONS,

@@ -3,7 +3,6 @@ import s from './styles/ProgressBar.module.css'
 
 const ProgressBar = ({ start, end, width }) => {
     const containerRef = useRef(null)
-    const [isVisible, setIsVisible] = useState(false)
     const [progressWidth, setprogressWidth] = useState(100)
     const calculateProgress = (start, end) => {
         const porcentaje = (end - start) / (end / 100)

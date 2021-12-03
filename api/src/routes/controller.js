@@ -158,7 +158,7 @@ async function getPokemons(req, res){
     
 }
 
-async function findPokeById(req, res){
+async function findPokeById(req, res, next){
   const { id } = req.params;
 
   if(!id) return res.sendStatus(400);
@@ -236,11 +236,8 @@ async function findPokeById(req, res){
       res.status(200).json(pokemon)
     }
   } catch (error) {
-    console.log(error.message)
-    res.status(404).json({
-        en: 'We couldnt find your pokemon',
-        es: 'No pudimos encontrar tu pokemón'
-      })
+    next({message: "We couldn't find this pokemon", status: 400})
+    /* next() */
   }
 }
 
@@ -385,10 +382,24 @@ async function getLocalPokemons(req, res){
   }
 }
 
+async function createType(req, res, next){
+  try {
+    const { en, es } = req.body;
+    let type = {
+      en,
+      es
+    }
+    const newType = await Types.findOrCreate({where: type})
+    res.status(200).json(newType) 
+  } catch (error) {
+    next(error)
+  }
+}
 module.exports ={
     getPokemons,
     findPokeById,
     getPokemonTypes,
     createPokemon,
-    getLocalPokemons
+    getLocalPokemons,
+    createType
 }

@@ -18,6 +18,17 @@ const Root = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (lang === 'en') {
+      document.title = 'Welcome to PokeDex!'
+    } else {
+      document.title = '¡Bienvenido a PokeDex!'
+    }
+    return () => {
+      document.title = "PokéDex!"
+    }
+  }, [lang])
+
+  useEffect(() => {
     axios
       .get(`http://localhost:3001/pokemons`)
       .then((response) => {

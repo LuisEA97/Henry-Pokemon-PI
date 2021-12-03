@@ -41,6 +41,7 @@ const Details = ({ id }) => {
         return `${result} kg`;
     }
     useEffect(() => {
+        lang === 'en' ? document.title = "Loading pokémon..." : document.title = "Cargando pokémon..."
         dispatch(setNavbarBg('#1E3A8A'))
         if (!pokemon) {
             if (reduxData && id === reduxData.id) {
@@ -68,6 +69,17 @@ const Details = ({ id }) => {
             }
         }
     }, [])
+
+    useEffect(() => {
+        if (lang === 'en' && pokemon) {
+            document.title = pokemon.name + "'s details"
+        } else if (lang === 'es' && pokemon) {
+            document.title = "Detalles de " + pokemon.name
+        }
+        return () => {
+            document.title = "PokéDex!"
+        }
+    }, [lang, pokemon])
 
     if (errorLoad) {
         dispatch(setNavbarBg('#e45b56'))

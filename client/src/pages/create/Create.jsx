@@ -179,6 +179,16 @@ const Create = () => {
         }
     }
     useEffect(() => {
+        if (lang === 'en') {
+            created ? document.title = "Pokémon successfully created!" : document.title = "Create your own pokémon!"
+        } else {
+            created ? document.title = "¡Pokémon creado!" : document.title = "¡Crea tu propio pokémon!"
+        }
+        return () => {
+            document.title = "PokéDex!"
+        }
+    }, [lang, created])
+    useEffect(() => {
         axios
             .get("http://localhost:3001/types")
             .then((response) => {

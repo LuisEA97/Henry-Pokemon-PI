@@ -49,11 +49,23 @@ const Home = () => {
   }, [filters]);
 
   useEffect(() => {
+    if (lang === 'en') {
+      document.title = "All pokémons"
+    } else {
+      document.title = "Todos los pokémones"
+    }
+    return () => {
+      document.title = "PokéDex!"
+    }
+  }, [lang])
+
+  useEffect(() => {
     if (pokemons.length === 0) {
       history.push("/");
     }
     dispatch(setNavbarBg("#080b14"));
   }, []);
+
 
   const toggleApi = () => {
     setLocalOrApi("API");

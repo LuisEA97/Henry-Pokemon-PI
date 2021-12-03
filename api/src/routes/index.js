@@ -6,7 +6,8 @@ const {
     findPokeById,
     getPokemonTypes,
     createPokemon,
-    getLocalPokemons
+    getLocalPokemons,
+    createType
 } = require('./controller')
 
 const router = Router();
@@ -18,5 +19,5 @@ router.get('/pokemons/local', getLocalPokemons)
 router.get('/pokemons/:id', findPokeById)
 router.get('/types', getPokemonTypes)
 router.post('/pokemons', createPokemon)
-
+router.post('/newtype', createType)
 module.exports = router;

@@ -122,7 +122,7 @@ const Home = () => {
               }`}
           >
             <span>
-              {lang === "en" ? "Worldwide pokemons" : "Pokemones del mundo"}
+              {lang === "en" ? "Worldwide pokémons" : "Pokémones del mundo"}
             </span>
           </button>
           <button
@@ -133,7 +133,7 @@ const Home = () => {
               }`}
           >
             <span>
-              {lang === "en" ? "Local pokemons" : "Pokemones locales"}
+              {lang === "en" ? "Local pokémons" : "Pokémones locales"}
             </span>
           </button>
         </div>
@@ -152,12 +152,12 @@ const Home = () => {
             </div>
             <div className="filter_group">
               <label htmlFor="showing">
-                {lang === "en" ? "Types of pokemons:" : "Tipos de pokemones:"}
+                {lang === "en" ? "Types of pokémons:" : "Tipos de pokémones:"}
               </label>
               <Dropdown
                 list={typesList}
                 lang={lang}
-                message={lang === "en" ? "All pokemons" : "Todos los pokemones"}
+                message={lang === "en" ? "All pokémons" : "Todos los pokémones"}
                 cb={showBy}
               />
             </div>

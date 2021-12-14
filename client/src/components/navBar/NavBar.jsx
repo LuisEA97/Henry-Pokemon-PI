@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import s from "./styles/NavBar.module.css";
 import logo from "../../img/logo.png";
+import { BiSearch } from "react-icons/bi";
+import { HiMenu } from "react-icons/hi";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -13,6 +15,7 @@ import axios from "axios";
 import { useHistory } from "react-router-dom";
 
 const NavBar = () => {
+  const [expanded, setExpanded] = useState(false)
   const dispatch = useDispatch();
   const history = useHistory();
   const color = useSelector((store) => store.navbarBg);
@@ -54,25 +57,38 @@ const NavBar = () => {
   };
 
   return (
-    <div className={s.nav_shadow} style={{ backgroundColor: `${color}` }}>
-      <nav className={s.nav} >
-        <Link draggable="false" to="/home">
-          <div className={s.logoContainer}>
-            <img draggable="false" src={logo} alt="pokemon" />
-          </div>
-        </Link>
+    <div className={`${s.nav_shadow} ${expanded ? s.expanded : s.notExpanded}`} style={{ backgroundColor: `${color}` }}>
+      <nav className={`${s.nav}`} >
+        <div className={s.menuBar}>
+          <Link draggable="false" to="/home">
+            <div className={s.logoContainer}>
+              <img draggable="false" src={logo} alt="pokemon" />
+            </div>
+          </Link>
+          <button
+            onClick={() => { setExpanded((expanded) => !expanded) }}
+            className={s.expandMenu}>
+            <HiMenu />
+          </button>
+        </div>
         <div className={s.options}>
-          <div className={s.create}>
-            <Link to='/home/create'>
-              <button className={`${s.link}`}>
-                <span>
-                  {lang === 'en' ? 'Create your own Pokémons!' : '¡Crea tus Pokémones!'}
-                </span>
-              </button>
-            </Link>
+          <div className={`${s.lang} ${s.menuOption}`}>
+            <button
+              className={`${s.button} ${lang === "en" ? s.button_active : ""}`}
+              onClick={() => dispatch(setEn())}
+            >
+              <span>EN</span>
+            </button>
+            <button
+              className={`${s.button} ${lang === "es" ? s.button_active : ""}`}
+              onClick={() => dispatch(setEs())}
+            >
+              <span>ES</span>
+            </button>
           </div>
-          <div className={s.search}>
+          <div className={s.menuOption}>
             <form
+              className={s.search}
               onSubmit={(e) => {
                 e.preventDefault();
                 findPokemon();
@@ -116,23 +132,19 @@ const NavBar = () => {
                 )}
               </label>
               <button type="submit" className={`${s.button} ${s.searchBtn}`}>
-                <span>{lang === "en" ? "Search" : "Buscar"}</span>
+                <span className={`${s.textSearch}`}>{lang === "en" ? "Search" : "Buscar"}</span>
+                <BiSearch className={`${s.iconSearch}`} />
               </button>
             </form>
           </div>
-          <div className={s.lang}>
-            <button
-              className={`${s.button} ${lang === "en" ? s.button_active : ""}`}
-              onClick={() => dispatch(setEn())}
-            >
-              <span>EN</span>
-            </button>
-            <button
-              className={`${s.button} ${lang === "es" ? s.button_active : ""}`}
-              onClick={() => dispatch(setEs())}
-            >
-              <span>ES</span>
-            </button>
+          <div className={`${s.create} ${s.menuOption}`}>
+            <Link to='/home/create'>
+              <button className={`${s.link}`}>
+                <span>
+                  {lang === 'en' ? 'Create your own Pokémons!' : '¡Crea tus Pokémones!'}
+                </span>
+              </button>
+            </Link>
           </div>
         </div>
       </nav>

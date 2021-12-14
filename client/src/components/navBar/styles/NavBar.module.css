@@ -22,32 +22,107 @@
     box-shadow: 2px 25px 34px 11px rgba(0,0,0,0.4);
     -webkit-box-shadow: 2px 25px 34px 11px rgba(0,0,0,0.4);
     -moz-box-shadow: 2px 25px 34px 11px rgba(0,0,0,0.4);
-  }
+    width: 100vw;
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
 .nav{
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     background-color: #ffc62a;
     color: #01264B;
     font-weight: 600;
-    padding: 10px 5rem;
-    border-radius: 0% 0% 50% 50% / 99% 0% 26% 25%;
+    
+    border-radius: 0%;    
     -webkit-background-clip: padding-box; 
     -moz-background-clip: padding;
-    background-clip: padding-box;
-    
+    background-clip: padding-box;   
+}
+.expanded{
+    height: 256px;
+    overflow-y: auto;
+}
+.notExpanded{
+    height: 70px;
+    overflow-y: hidden;
+}
+.menuBar{
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+.expandMenu{
+    display: inline-flex;
+    position: absolute;
+    padding: 7px;
+    top: 0.25rem;
+    right: 1.5rem;
+    font-size: 30px;
+}
+.expandMenu:focus{
+    border: 2px solid #01264B;
+    padding: 5px;
+}
+.expandMenu:active{
+    background-color: #01264B;
+    color: #ffc62a;
 }
 .logoContainer{
     max-width: 120px;
     cursor: pointer;
+    margin-bottom: 10px;
 }
 .options{
+    margin-top: 15px;
     display: flex;
+    flex-direction: column;
     align-self: center;
     color: #080b14;
+    width: 100%;
 }
+
 .options *{
     align-self: center;
 }
+.menuOption{
+    margin: 18px 0;
+}
+@media (min-width: 768px) {
+    .menuBar{
+        display: unset;
+        width: auto;
+    }
+    .expandMenu{
+        display: none;
+    }
+    .nav{
+        border-radius: 0% 0% 50% 50% / 99% 0% 26% 25%;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+        justify-content: space-between;
+        padding: 10px 5rem;
+    }
+    .nav .logoContainer{
+        margin-bottom: 0px;
+    }
+    .options{
+        margin-top: 0;
+        flex-direction: row-reverse;
+        width: auto;
+    }
+    .menuOption{
+        margin: 0;
+    }
+}
+
+
 .lang{
     margin: 0 10px;
 }
@@ -62,6 +137,19 @@
     color: #ffc62a;
     border: 0;
 }
+.search{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-around;
+}
+@media (min-width: 768px) {
+    .search{
+        display: inline-flex;
+        width: auto;
+    }
+}
+
 .searchBtn{
     position: relative;
 }
@@ -96,22 +184,41 @@
 }
 .inputSearch{
     background-color: transparent;
-    width: 227px;
-    padding-left: 25px;
-    border-bottom: 2px solid #01264B;
+    padding: 5px 5px;
+    width: 100%;
+    border: 2px solid #01264B;
     font-weight: 600;
     position: relative;
+    outline: 0px;
+}
+.textSearch{
+    display: none;
+}
+@media (min-width: 768px) {
+    .textSearch{
+        display: block;
+    }
+    .iconSearch{
+        display: none;
+    }
+    .inputSearch{
+        padding: 0px 0px 0px 25px;
+        width: 227px;
+        border: 0px;
+        border-bottom: 2px solid #01264B;
+    }
+    .inputSearch:focus{
+        outline: 2px solid #01264B;
+        border-bottom: 0;
+        font-weight: 600;
+        color: #01264B;
+    }
 }
 .inputSearch::placeholder{
     color: #354452;
     font-weight: 500;
 }
-.inputSearch:focus{
-    outline: 2px solid #01264B;
-    border-bottom: 0;
-    font-weight: 600;
-    color: #01264B;
-}
+
 .inputSearch:focus::-webkit-input-placeholder {
     color: #ffc62ac5;
     font-weight: 600;
@@ -135,6 +242,11 @@
     right: -18px;
     padding-right: 2px;
 }
+@media only screen and (max-width: 768px){
+    .label::before{
+        display: none;
+    }
+}
 .loadingSearch{
     position: relative
 }
@@ -155,10 +267,19 @@
     animation: load 1.1s infinite linear;
 }
 .searchBtn{
-    padding: 0 10px;
-    margin: 0 10px;
+    padding: 9.5px 5px 8.5px 5px;
+    margin: 0;
+    border-left: 0;
     transition: all 0.2s;
 }
+@media only screen and (min-width: 768px){
+    .searchBtn{
+        padding: 0 10px;
+        margin: 0px 10px;
+        border-left: 2px solid black;
+    } 
+}
+
 .searchBtn:hover{
     background-color: #01264B;
     color: #ffc62a

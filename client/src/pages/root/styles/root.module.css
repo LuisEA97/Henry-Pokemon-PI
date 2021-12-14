@@ -23,9 +23,11 @@
     margin: 20px 0;
     color: #070808;  
 }
+
 .container > h2{
     font-size: 25px;
 }
+
 .langBtn{
     border-radius: 10px;
     display: inline-flex;
@@ -93,6 +95,20 @@
     font-size: 20px;
     font-weight: 600;
     color:#991B1B;
+}
+@media (max-width:640px) {
+    .logo{
+        width: 18rem;
+    } 
+    .welcome{
+        font-size: 40px;
+    }
+    .container > h2{
+        font-size: 22px;
+    }
+    .loadingPokemons, .errorStatus{
+        font-size: 18px;
+    }
 }
 .loadedStatus{
     font-weight: 600;

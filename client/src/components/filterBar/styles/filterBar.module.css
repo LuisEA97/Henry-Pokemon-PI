@@ -108,6 +108,7 @@
 }
 .filter_group > label {
   align-self: center;
+  margin-bottom: 5px;
 }
 .textDropdown {
   font-size: 1.1rem;
@@ -122,7 +123,22 @@
   justify-content: space-evenly;
 }
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px){
+  .filterOptions {
+    display: none;
+    overflow-y: auto;
+    height: auto;
+  }
+  .expanded {
+    height: 90px;
+    overflow-y: unset;
+  }
+  .notExpanded {
+    height: 90px;
+    overflow-y: unset;
+  }
+}
+@media only screen and (min-width: 1024px) {
   .navButtons {
     display: none;
   }
@@ -135,19 +151,6 @@
   }
   .filters {
     flex-direction: row;
-  }
-  .filterOptions {
-    display: none;
-    overflow-y: auto;
-    height: auto;
-  }
-  .expanded {
-    height: auto;
-    overflow-y: unset;
-  }
-  .notExpanded {
-    height: auto;
-    overflow-y: unset;
   }
   .nav_button {
     width: auto;

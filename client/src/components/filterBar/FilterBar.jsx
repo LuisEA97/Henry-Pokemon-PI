@@ -3,7 +3,6 @@ import s from './styles/filterBar.module.css'
 import { useSelector, useDispatch } from "react-redux";
 import { filterBy, filterApi, filterLocal } from '../../redux/actions/actions';
 import Dropdown from "../../components/dropdown/Dropdown";
-import { BsPlusLg } from "react-icons/bs";
 
 const FilterBar = () => {
     const dispatch = useDispatch();

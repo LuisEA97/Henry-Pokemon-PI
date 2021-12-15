@@ -44,7 +44,6 @@
 }
 .expanded{
     height: 256px;
-    
 }
 .notExpanded{
     height: 70px;
@@ -74,7 +73,7 @@
     color: #ffc62a;
 }
 .logoContainer{
-    max-width: 120px;
+    width: 120px;
     cursor: pointer;
     margin-bottom: 10px;
 }
@@ -93,7 +92,17 @@
 .menuOption{
     margin: 18px 0;
 }
-@media (min-width: 768px) {
+@media only screen and (min-width: 768px){
+    .options{
+        margin-top: 0;
+        flex-direction: row-reverse;
+        width: auto;
+    }
+    .expanded{
+        height: 150px;
+    }
+}
+@media (min-width: 1024px) {
     .menuBar{
         display: unset;
         width: auto;
@@ -111,11 +120,6 @@
     }
     .nav .logoContainer{
         margin-bottom: 0px;
-    }
-    .options{
-        margin-top: 0;
-        flex-direction: row-reverse;
-        width: auto;
     }
     .menuOption{
         margin: 0;

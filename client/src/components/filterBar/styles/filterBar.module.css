@@ -1,0 +1,159 @@
+.navigation {
+  padding: 10px 0;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.navgroups {
+  display: flex;
+}
+.nav_button {
+  padding: 10px 15px;
+  color: #f9fafb;
+  font-weight: 600;
+  width: 50%;
+}
+.nav_button:focus,
+.nav_button:active {
+  outline: none;
+}
+.nav_active {
+  background-color: #ffc62a;
+  color: #01264b;
+  border: 0;
+}
+.nav_unactive {
+  border: 1px solid #ffc62a;
+  border-bottom: 0;
+}
+.filterHolder {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+.expandIcon{
+  position: relative;
+  width: 14px;
+  height: 14px;
+}
+.expandIcon::before, .expandIcon::after{
+  content: "";
+  position: absolute;
+  background-color: white;
+  transition: transform 0.25s ease-out;
+}
+.expandIcon::before{
+  top: 0;
+	left: 50%;
+	width: 3px;
+	height: 100%;
+	margin-left: -2px;
+}
+.expandIcon::after {
+	 top: 50%;
+	 left: 0;
+	 width: 100%;
+	 height: 3px;
+	 margin-top: -2px;
+}
+.expanded {
+  height: 266px;
+}
+.notExpanded {
+  height: 48px;
+  overflow-y: hidden;
+}
+.expanded .expandIcon::before{
+   transform: rotate(90deg);
+}
+.expanded .expandIcon::after{
+   transform: rotate(180deg);
+}
+.filterOptions {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 20px 25px;
+}
+.filterOptions span {
+  font-size: 1.12rem;
+}
+.showHideFilter {
+  display: inline-flex;
+}
+.showHideFilter * {
+  align-self: center;
+}
+.showHideFilter > span {
+  margin-right: 10px;
+}
+.filters {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter_group {
+  margin: 10px 20px;
+  display: flex;
+  flex-direction: column;
+}
+.filter_group > input {
+  margin: 0 5px;
+}
+.filter_group > label {
+  align-self: center;
+}
+.textDropdown {
+  font-size: 1.1rem;
+}
+@media only screen and (min-width: 640px){
+  .expanded {
+  height: 180px;
+}
+  .filters {
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-evenly;
+}
+}
+@media only screen and (min-width: 768px) {
+  .navButtons {
+    display: none;
+  }
+  .navigation {
+    padding: 10px 40px 0 40px;
+    flex-direction: row;
+  }
+  .textDropdown {
+    font-size: 1rem;
+  }
+  .filters {
+    flex-direction: row;
+  }
+  .filterOptions {
+    display: none;
+    overflow-y: auto;
+    height: auto;
+  }
+  .expanded {
+    height: auto;
+    overflow-y: unset;
+  }
+  .notExpanded {
+    height: auto;
+    overflow-y: unset;
+  }
+  .nav_button {
+    width: auto;
+  }
+  .filter_group {
+    margin: 0 20px;
+    flex-direction: row;
+  }
+}

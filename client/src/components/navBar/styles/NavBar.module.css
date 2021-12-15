@@ -22,10 +22,11 @@
     box-shadow: 2px 25px 34px 11px rgba(0,0,0,0.4);
     -webkit-box-shadow: 2px 25px 34px 11px rgba(0,0,0,0.4);
     -moz-box-shadow: 2px 25px 34px 11px rgba(0,0,0,0.4);
-    width: 100vw;
+    width: 100%;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 300ms;
+    overflow-y: hidden;
 }
 .nav{
     display: flex;
@@ -36,7 +37,6 @@
     background-color: #ffc62a;
     color: #01264B;
     font-weight: 600;
-    
     border-radius: 0%;    
     -webkit-background-clip: padding-box; 
     -moz-background-clip: padding;
@@ -44,11 +44,11 @@
 }
 .expanded{
     height: 256px;
-    overflow-y: auto;
+    
 }
 .notExpanded{
     height: 70px;
-    overflow-y: hidden;
+
 }
 .menuBar{
     display: flex;

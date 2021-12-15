@@ -10,3 +10,5 @@ export const UPDATE_LOCAL_POKEMONS = 'UPDATE_LOCAL_POKEMONS';
 export const FILTER_BY = 'FILTER_BY';
 export const SET_EN = 'SET_EN'
 export const SET_ES = 'SET_ES'
+export const FILTER_LOCAL = 'FILTER_LOCAL'
+export const FILTER_API = 'FILTER_API'

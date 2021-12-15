@@ -62,7 +62,9 @@ const Dropdown = ({list, lang, message, cb}) => {
             }}
             className={s.selected}
           >
-            {!selected ? message : selected[lang]}
+            <div className={s.buttonText}>
+              <span>{!selected ? message : selected[lang]}</span>
+            </div>
           </div>
         </div>
       </>

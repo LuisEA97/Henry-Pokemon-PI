@@ -10,7 +10,9 @@ import {
     SET_EN,
     SET_ES,
     FILTER_BY,
-    SET_NAVBAR_BG
+    SET_NAVBAR_BG,
+    FILTER_API,
+    FILTER_LOCAL
 } from "../actionTypes/actionTypes";
 
 const axios = require('axios').default
@@ -83,6 +85,16 @@ export function setEs(){
     return{
         type: SET_ES,
         payload: 'es'
+    }
+}
+export function filterLocal(){
+    return{
+        type: FILTER_LOCAL
+    }
+}
+export function filterApi(){
+    return{
+        type: FILTER_API
     }
 }
 export function filterBy(activeFilters){

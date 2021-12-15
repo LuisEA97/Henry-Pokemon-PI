@@ -45,6 +45,9 @@ select{
   line-height: inherit;
   outline: none;
 }
+/* .main_app{
+  height: 100vh;
+} */
 .consola{
   font-family: 'Space Mono', monospace;
 }

@@ -9,7 +9,9 @@ import {
     SET_EN,
     SET_ES,
     FILTER_BY,
-    SET_NAVBAR_BG
+    SET_NAVBAR_BG,
+    FILTER_API,
+    FILTER_LOCAL
 } from "../actionTypes/actionTypes";
 
 const initalState = {
@@ -21,7 +23,8 @@ const initalState = {
     types: [],
     pokeById: '',
     error: {},
-    lang: 'es'
+    lang: 'es',
+    localOrApi: 'API'
 }
 
 function rootReducer(state = initalState, action){
@@ -77,6 +80,16 @@ function rootReducer(state = initalState, action){
             return{
                 ...state,
                 lang: action.payload
+            }
+        case FILTER_API:
+            return {
+                ...state,
+                localOrApi: 'API'
+            }
+        case FILTER_LOCAL:
+            return {
+                ...state,
+                localOrApi: 'LOCAL'
             }
         case FILTER_BY:
             let filters = action.payload;

@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import s from './styles/Pagination.module.css'
 import PokeCard from '../pokeCard/pokeCard'
 import { Link } from "react-router-dom";
+import PokeMobileCard from '../PokeMobileCard/PokeMobileCard';
 
 const Pagination = ({itemsPerPage, showing}) => {
     const cards = useRef()
@@ -54,7 +55,12 @@ const Pagination = ({itemsPerPage, showing}) => {
         <div className={s.pagination}>
             <div className={`${s.itemsHolder} custom-scrollbar`} ref={cards}>
                 {!empty ?
-                    currentItems.map(pokemon => <PokeCard key={pokemon.id} pokemon={pokemon}/>)
+                    currentItems.map(pokemon =>
+                        <>
+                            <PokeCard key={pokemon.id} pokemon={pokemon} />
+                            <PokeMobileCard key={pokemon.id} pokemon={pokemon} />
+                        </>
+                    )
                  : (
                      <div className={s.empty}>
                          <div className={s.centered}>

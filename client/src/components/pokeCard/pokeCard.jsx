@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 
 const PokeCard = ({ pokemon }) => {
   const bgCard = typeClass(pokemon.types[0].en).cardBg;
+  const bgLink = typeClass(pokemon.types[0].en).pageBg;
   const [loadedImg, setLoadedImg] = useState(false);
   const [errorLoadImg, setErrorLoadImg] = useState(false);
   const loaded = () => {
@@ -48,7 +49,7 @@ const PokeCard = ({ pokemon }) => {
       </div>
       <div className={`${s.linkHolder}`}>
         <Link to={`home/details/${pokemon.id}`}>
-          <button className={`${s.detailsBtn}`}>
+          <button className={`${s.detailsBtn} ${bgLink}`}>
             <div className={`${s.aux}`}>
               <span className={`${s.detailsBtnText}`}>
                 {lang === "es" ? "Detalles..." : "Details..."}

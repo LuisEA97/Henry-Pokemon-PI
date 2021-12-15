@@ -37,11 +37,11 @@
 }
 .itemsHolder{
     flex-wrap: wrap;
+    width: 100%;
     justify-content: left;
     align-self: center;
     overflow-y: auto;
     overflow-x: hidden;
-    margin: 0 30px;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;

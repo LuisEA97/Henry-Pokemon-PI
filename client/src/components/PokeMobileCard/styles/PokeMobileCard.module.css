@@ -1,21 +1,21 @@
 .card{
-    display: none;
-    flex-direction: column;
-    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 10px 0;
+    margin-right: 5px;
     padding: 10px 15px;
     border-radius: 10px;
-    height: 320px;
     color: black;
     overflow: hidden;
     transition-property: all;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     transition-duration: 150ms;
-    isolation: isolate;
     position: relative;
 }
 @media only screen and (min-width: 640px){
     .card{
-        display: inline-flex;
+        display: none;
     }
 }
 .attack{
@@ -40,44 +40,62 @@
 .imageContainer{
     display: flex;
     flex-direction: column;
-    width: 180px;
-    height: 180px;
+    width: 130px;
+    height: 130px;
     justify-content: center;
     align-items: center;
 }
-
-.name{
-    display: inline-flex;
+.pokemonNameInfo{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
+    height: 100px;
+}
+.name{
+    margin-left: 5px;
+    text-align: left;
     text-transform: capitalize;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 600;
 }
 .pillsHolder{
     display: flex;
-    justify-content: center;
-    margin: 10px 0 5px 0;
+    width: 100%;
+    flex-direction: row;
+    align-self: center;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin: 5px 0;
 }
 .pill{
     font-weight: 600;
+    font-size: 0.750rem;
     margin: 0 5px;
     padding: 1px 10px;
     border-radius: 9999px;
 }
 .linkHolder{
     display: flex;
-    justify-content: center;
-    margin: 10px 0 5px;
+    justify-content: flex-start;
+    margin: 5px 0;
 }
 .detailsBtn{
     display: inline-flex;
-    padding: 1px 10px;
+    justify-content: center;
+    flex-direction: row;
+    width: 10rem;
+    padding: 2px 10px;
     border-radius: 10px;
     font-weight: 500;
 }
+.detailsBtn > * {
+    color: white;
+    align-self: center;
+}
 .detailsBtnText{
    color: rgb(255, 255, 255); 
-   isolation: isolate;
+   align-self: center;
 }
 .loaderImg{
     max-width: 80px;
